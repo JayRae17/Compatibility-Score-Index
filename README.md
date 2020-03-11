@@ -10,7 +10,7 @@ Steps to properly install dependencies on local machine are as follows in VS Cod
 2.  Check python version:  
     python --version
 
-    # Python 3 and over should be installed on your local machine
+    Python 3 and over should be installed on your local machine
 
 3.  Create Virtual Environment :
     cd Compatibility-Score-Index
@@ -21,21 +21,21 @@ Steps to properly install dependencies on local machine are as follows in VS Cod
 
 5.  Create Branch to work on your specific task (etc).
 
-6.  # Look in the app folder and click init.py. Line 7 shows that we are using Mysql and the name of the database is csi.
+6.  Look in the app folder and click init.py. Line 7 shows that we are using Mysql and the name of the database is csi.
 
-    # In VS Code, you can create the database by using conventional methods (mysql -u root --> create database csi --> use csi)
+    In VS Code, you can create the database by using conventional methods (mysql -u root --> create database csi --> use csi)
 
-7.  # Models.py has the Python Classes used to create tables in CSI Database. To create these tables in CSI on your local machine, run the following commands.
+7.  Models.py has the Python Classes used to create tables in CSI Database. To create these tables in CSI on your local machine, run the following commands.
 
-    # N.B. Ensure you are in the Compatibility-Score-Index Folder.
+    N.B. Ensure you are in the Compatibility-Score-Index Folder.
 
     python flask-migrate.py db init
     python flask-migrate.py db migrate
     python flask-migrate.py db upgrade
 
-    # When we go back to the CSI Database, we should see the same tables in our models.py file and alembic version table.
+    When we go back to the CSI Database, we should see the same tables in our models.py file and alembic version table.
 
-8.  # To post to the DB, type the following commands:
+8.  To post to the DB, type the following commands:
 
     python
     from app import db
@@ -47,8 +47,8 @@ Steps to properly install dependencies on local machine are as follows in VS Cod
 9.  To view the webpage:
     python run.py
 
-    # Go to your web browser and go to localhost
+    Go to your web browser and go to localhost
 
-10.  To activate the virtual environment:
+10. To activate the virtual environment:
     .\venv\scripts\activate
-    # (venv) should appear before Folder path in the terminal
+    (venv) should appear before Folder path in the terminal
