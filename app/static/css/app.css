@@ -93,3 +93,71 @@ footer h5 {
 .col-6.mx-auto.p-3 {
   text-align: center;
 }
+
+/******************************** User Registration Form Region ********************************/
+.register-form.center-block {
+  text-align: center;
+  font-size: 40px;
+  line-height: 49px;
+  letter-spacing: -0.015em;
+  color: #3a3a3a;
+}
+.card-main {
+  background: #f1f1f1;
+  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  padding: 3rem 0rem 3rem 0rem;
+}
+main .btn-outline-success,
+main .btn-outline-success:hover {
+  border: 1px solid #0e267a;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-right: 1rem;
+  padding: 0.5rem 2.5rem;
+  color: #0e267a;
+  font-weight: 600;
+}
+
+main .btn-outline-success:hover {
+  color: #fff;
+  background-color: #0e267a;
+}
+
+main .btn-outline-success:not(:disabled):not(.disabled):active {
+  background: #0e267a;
+  border-color: #0e267a;
+}
+
+main .btn-outline-success.focus,
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem rgba(56, 48, 77, 0.5);
+}
+
+.card-main p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: rgb(14, 38, 123);
+}
+
+form.card-user-reg.mb-5 {
+  background: #f1f1f1;
+  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+}
+
+form.card-user-reg div.col,
+form.card-user-reg div.about-you {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: #0e267a;
+}
+
+form.card-user-reg div.about-you {
+  background: rgb(14, 38, 123);
+  color: rgba(255, 255, 255, 0.8);
+}

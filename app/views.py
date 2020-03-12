@@ -77,6 +77,16 @@ def register():
             return redirect(url_for("home"))
     return render_template('register.html', form=form)
 
+
+@app.route('/registerRegular/')
+def registerRegular():
+    return render_template('general_register.html')
+
+
+@app.route('/registerOrganizer/')
+def registerOrganizer():
+    return render_template('general_register.html')
+
 # user_loader callback. This callback is used to reload the user object from
 # the user ID stored in the session
 @login_manager.user_loader
