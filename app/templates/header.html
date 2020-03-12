@@ -1,5 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="#">Yaadie</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top container">
+  <img
+    src="../static/images/Icon.png"
+    width="30"
+    height="30"
+    class="d-inline-block align-top mr-1"
+    alt=""
+  />
+  <a class="navbar-brand ml-1" href="#">Réseau</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -14,20 +21,97 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item active mr-4">
         <a class="nav-link" href="{{ url_for('home') }}"
-          >Home <span class="sr-only">(current)</span></a
+          >Home<span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item mr-4">
         <a class="nav-link" href="{{ url_for('about') }}">About</a>
+      </li>
+      <li class="nav-item mr-4">
+        <a class="nav-link" href="{{ url_for('login') }}">Testimonies</a>
       </li>
     </ul>
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+        <!-- <a class="nav-link" href="{{ url_for('login') }}">Login</a> -->
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Login
+        </button>
+      </li>
+      <li class="nav-item">
+        <!-- <a class="nav-link" href="{{ url_for('login') }}">Register</a> -->
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          Register
+        </button>
       </li>
     </ul>
   </div>
 </nav>
+
+<style scoped>
+  .navbar-light .navbar-brand,
+  .navbar-light .navbar-brand:hover {
+    color: #21abcb;
+  }
+
+  .navbar-light .navbar-nav .nav-link:hover {
+    color: #957ae1;
+  }
+
+  .navbar-brand {
+    margin-right: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: -0.015em;
+  }
+
+  .navbar-light .navbar-nav .nav-link,
+  .navbar-light .navbar-nav .active > .nav-link {
+    color: #5a5a5a;
+    font-size: 15px;
+    font-family: "Montserrat", "Open Sans";
+  }
+
+  .navbar-light .navbar-nav .active > .nav-link {
+    font-weight: bold;
+  }
+
+  .btn-outline-success,
+  .btn-outline-success:hover {
+    border: 1px solid #957ae1;
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin-right: 1rem;
+    padding: 0.5rem 2.5rem;
+    color: #957ae1;
+    font-weight: 600;
+    font-family: "Montserrat", "Open Sans";
+  }
+
+  .btn-outline-success:hover {
+    color: #fff;
+    background-color: #957ae1;
+  }
+
+  .btn-outline-success:not(:disabled):not(.disabled):active {
+    background-color: #957ae1;
+    border-color: #957ae1;
+  }
+
+  .btn-outline-success.focus,
+  .btn-outline-success:focus {
+    box-shadow: 0 0 0 0.2rem rgba(149, 122, 225, 0.5);
+  }
+
+  @media screen and (min-width: 992px) {
+    .navbar-expand-lg .navbar-nav .nav-link {
+      padding-left: 1rem;
+    }
+  }
+</style>
