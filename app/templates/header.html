@@ -1,5 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  <a class="navbar-brand" href="#">Yaadie</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white static-top container">
+  <img
+    src="../static/images/Icon.png"
+    width="30"
+    height="30"
+    class="d-inline-block align-top mr-1"
+    alt=""
+  />
+  <a class="navbar-brand ml-1" href="#">Réseau</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -14,19 +21,33 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item nav-link mr-4 active">
         <a class="nav-link" href="{{ url_for('home') }}"
-          >Home <span class="sr-only">(current)</span></a
+          >Home<span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item">
+      <li class="nav-item nav-link mr-4">
         <a class="nav-link" href="{{ url_for('about') }}">About</a>
+      </li>
+      <li class="nav-item nav-link mr-4">
+        <a class="nav-link" href="{{ url_for('login') }}">Testimonies</a>
       </li>
     </ul>
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+        <a
+          class="btn btn-outline-success my-2 my-sm-0"
+          href="{{ url_for('login') }}"
+          >Log In</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="btn btn-outline-success my-2 my-sm-0"
+          href="{{ url_for('register') }}"
+          >Register</a
+        >
       </li>
     </ul>
   </div>

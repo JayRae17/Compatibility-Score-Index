@@ -1,3 +1,95 @@
 body {
-    padding-top: 5rem;
+  font-family: "Montserrat", "Open Sans";
+}
+
+/************************************** Navigation Area **************************************/
+.navbar-light .navbar-brand,
+.navbar-light .navbar-brand:hover {
+  color: #21abcb;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #957ae1;
+}
+
+.navbar-brand {
+  margin-right: 2rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.015em;
+}
+
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-nav .active > .nav-link {
+  color: #5a5a5a;
+  font-size: 15px;
+}
+
+.navbar-light .navbar-nav .active > .nav-link {
+  font-weight: bold;
+}
+
+.btn-outline-success,
+.btn-outline-success:hover {
+  border: 1px solid #957ae1;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-right: 1rem;
+  padding: 0.5rem 2.5rem;
+  color: #957ae1;
+  font-weight: 600;
+}
+
+.btn-outline-success:hover {
+  color: #fff;
+  background-color: #957ae1;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active {
+  background-color: #957ae1;
+  border-color: #957ae1;
+}
+
+.btn-outline-success.focus,
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem rgba(149, 122, 225, 0.5);
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
+    padding-left: 1rem;
+  }
+}
+
+/******************************** Footer Region ********************************/
+
+footer {
+  background: #22252e;
+  margin-top: 2rem;
+}
+footer a.navbar-brand.ml-1 {
+  color: #21abcb;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  letter-spacing: -0.015em;
+}
+
+footer div p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #fff;
+  font-size: 15px;
+}
+
+footer h5 {
+  color: #fff;
+}
+
+.col-6.mx-auto.p-3 {
+  text-align: center;
 }
