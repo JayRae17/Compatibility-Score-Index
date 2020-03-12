@@ -1,8 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top container">
   <img
     src="../static/images/Icon.png"
-    width="30"
-    height="30"
     class="d-inline-block align-top mr-1"
     alt=""
   />
@@ -38,7 +36,7 @@
       <li class="nav-item">
         <!-- <a class="nav-link" href="{{ url_for('login') }}">Login</a> -->
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Login
+          Log In
         </button>
       </li>
       <li class="nav-item">
@@ -59,6 +57,7 @@
 
   .navbar-light .navbar-nav .nav-link:hover {
     color: #957ae1;
+    color: #21abcb;
   }
 
   .navbar-brand {
@@ -85,11 +84,13 @@
   .btn-outline-success,
   .btn-outline-success:hover {
     border: 1px solid #957ae1;
+    border: 1px solid #21abcb;
     box-sizing: border-box;
     border-radius: 6px;
     margin-right: 1rem;
     padding: 0.5rem 2.5rem;
     color: #957ae1;
+    color: #21abcb;
     font-weight: 600;
     font-family: "Montserrat", "Open Sans";
   }
@@ -97,16 +98,18 @@
   .btn-outline-success:hover {
     color: #fff;
     background-color: #957ae1;
+    background-color: rgb(33, 171, 203);
   }
 
   .btn-outline-success:not(:disabled):not(.disabled):active {
     background-color: #957ae1;
-    border-color: #957ae1;
+    background-color: #21abcb;
+    border-color: #21abcb;
   }
 
   .btn-outline-success.focus,
   .btn-outline-success:focus {
-    box-shadow: 0 0 0 0.2rem rgba(149, 122, 225, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba(33, 171, 203, 0.5);
   }
 
   @media screen and (min-width: 992px) {
