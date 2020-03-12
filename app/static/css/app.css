@@ -3,9 +3,29 @@ body {
 }
 
 /************************************** Navigation Area **************************************/
+.navbar {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0rem 1rem;
+}
+
 .navbar-light .navbar-brand,
 .navbar-light .navbar-brand:hover {
   color: #21abcb;
+}
+
+.nav-custom{
+  background-color: #6B92E8;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
@@ -22,30 +42,39 @@ body {
   letter-spacing: -0.015em;
 }
 
-.navbar-light .navbar-nav .nav-link,
-.navbar-light .navbar-nav .active > .nav-link {
-  color: #5a5a5a;
-  font-size: 15px;
-}
-
-.navbar-light .navbar-nav .active > .nav-link {
-  font-weight: bold;
-}
-
 .btn-outline-success,
 .btn-outline-success:hover {
-  border: 1px solid #957ae1;
+  border: 1px solid #fff;
   box-sizing: border-box;
   border-radius: 6px;
   margin-right: 1rem;
   padding: 0.5rem 2.5rem;
-  color: #957ae1;
+  color: #fff;
   font-weight: 600;
+}
+
+.btn-outline-success-V2{
+  border: 1px solid #fff;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-right: 1rem;
+  padding: 0.5rem 2.5rem;
+  color: #6B92E8;
+  font-weight: 600;
+
 }
 
 .btn-outline-success:hover {
   color: #fff;
-  background-color: #957ae1;
+  background-color: #0E267A;
+  border: 1px solid #0E267A;
+}
+
+.btn-outline-success-V2:hover {
+  color: #fff;
+  background-color: #0E267A;
+  border: 1px solid #0E267A;
 }
 
 .btn-outline-success:not(:disabled):not(.disabled):active {
@@ -63,6 +92,7 @@ body {
     padding-left: 1rem;
   }
 }
+
 
 /******************************** Footer Region ********************************/
 
@@ -92,4 +122,28 @@ footer h5 {
 
 .col-6.mx-auto.p-3 {
   text-align: center;
+}
+
+
+/******************************** FOR MAIN ********************************/
+
+
+.container {
+  width: 100%;
+  padding-top: 3rem;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+/******************************** FOR FOOTER ********************************/
+.container2 {
+  width: 100%;
+  margin-top: 5rem;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
