@@ -83,6 +83,11 @@ def registerRegular():
     return render_template('general_register.html')
 
 
+@app.route('/aboutRegular/')
+def aboutRegular():
+    return render_template('about_you.html')
+
+
 @app.route('/registerOrganizer/')
 def registerOrganizer():
     return render_template('general_register.html')

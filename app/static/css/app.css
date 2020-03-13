@@ -166,7 +166,8 @@ form.card-user-reg div.about-you {
   color: #0e267a;
 }
 
-form.card-user-reg div.about-you {
+form.card-user-reg div.about-you,
+form.card-user-reg div.general {
   background: rgb(14, 38, 123);
   color: rgba(255, 255, 255, 0.8);
 }
