@@ -1,15 +1,24 @@
+header.mb-3 {
+  background: #6b92e8;
+}
+
 body {
   font-family: "Montserrat", "Open Sans";
 }
 
+a.navbar-brand.ml-1 {
+  color: white;
+}
+
 /************************************** Navigation Area **************************************/
+
 .navbar-light .navbar-brand,
 .navbar-light .navbar-brand:hover {
   color: #21abcb;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-  color: #957ae1;
+  color: #fff;
 }
 
 .navbar-brand {
@@ -24,7 +33,7 @@ body {
 
 .navbar-light .navbar-nav .nav-link,
 .navbar-light .navbar-nav .active > .nav-link {
-  color: #5a5a5a;
+  color: #fff;
   font-size: 15px;
 }
 
@@ -34,18 +43,18 @@ body {
 
 .btn-outline-success,
 .btn-outline-success:hover {
-  border: 1px solid #957ae1;
+  border: 1px solid #fff;
   box-sizing: border-box;
   border-radius: 6px;
   margin-right: 1rem;
   padding: 0.5rem 2.5rem;
-  color: #957ae1;
+  color: #fff;
   font-weight: 600;
 }
 
 .btn-outline-success:hover {
-  color: #fff;
-  background-color: #957ae1;
+  color: #6b92e8;
+  background-color: #fff;
 }
 
 .btn-outline-success:not(:disabled):not(.disabled):active {
