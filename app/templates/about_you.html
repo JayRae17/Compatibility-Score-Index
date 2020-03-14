@@ -2,26 +2,23 @@
 <div class="register-form center-block">
   <img
     src="../static/images/Footer Logo.png"
-    class="d-inline-block align-top"
+    class="d-inline-block align-top mt-5"
     alt=""
   />
-  <h2 class="mb-3 mt-3">User Registration</h2>
+  <h2 class="mb-5 mt-3">User Registration</h2>
   <form class="card-user-reg mb-5">
     <div class="row my-2">
-      <div class="col general">
+      <div class="col general title">
         General
       </div>
-      <div class="col">
+      <div class="col title">
         About You
       </div>
     </div>
-    <div class="row my-2">
-      <p></p>
-    </div>
-    <div class="row my-2">
+    <div class="row mt-5">
       <div class="col">
         <div class="form-group">
-          <label for="exampleFormControlInput1">Sex:</label>
+          <label for="exampleFormControlInput1">Sex</label>
           <input
             type="email"
             class="form-control"
@@ -32,7 +29,7 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="exampleFormControlInput1">Age:</label>
+          <label for="exampleFormControlInput1">Age</label>
           <input
             type="email"
             class="form-control"
@@ -43,7 +40,7 @@
       </div>
       <div class="col">
         <div class="form-group">
-          <label for="exampleFormControlInput1">Height:</label>
+          <label for="exampleFormControlInput1">Height</label>
           <input
             type="email"
             class="form-control"
@@ -55,7 +52,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="exampleFormControlInput1">What is your ethnicity?</label>
           <input
             type="email"
@@ -68,7 +65,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="exampleFormControlInput1">What is your personality type?</label>
           <input
             type="email"
@@ -81,7 +78,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="exampleFormControlInput1">To which work area do you belong?</label>
           <input
             type="email"
@@ -94,7 +91,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="exampleFormControlInput1">How would you describe your leadership style?</label>
           <input
             type="email"
@@ -107,7 +104,7 @@
     </div>
     <div class="row">
       <div class="col">
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label for="exampleFormControlInput1">Which is your level of education?</label>
           <input
             type="email"
@@ -119,11 +116,11 @@
       </div>
     </div>
       <div class="row my-2">
-        <div class="col mb-5 mt-3">
+        <div class="col mt-5 mb-4">
           <a
             class="btn btn-outline-success my-2 my-sm-0"
-            href="{{ url_for('aboutRegular') }}"
-            >Register</a
+            href="{{ url_for('about') }}"
+            >Submit</a
           >
         </div>
       </div>

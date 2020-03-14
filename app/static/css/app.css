@@ -58,8 +58,8 @@ a.navbar-brand.ml-1 {
 }
 
 .btn-outline-success:not(:disabled):not(.disabled):active {
-  background-color: #957ae1;
-  border-color: #957ae1;
+  background-color: #6b92e8;
+  border-color: #6b92e8;
 }
 
 .btn-outline-success.focus,
@@ -80,7 +80,7 @@ footer {
   margin-top: 2rem;
 }
 footer a.navbar-brand.ml-1 {
-  color: #21abcb;
+  color: #6b92e8;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
@@ -114,7 +114,7 @@ footer h5 {
 .card-main {
   background: #f1f1f1;
   box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
-  padding: 3rem 0rem 3rem 0rem;
+  padding: 1rem 0rem 3rem 0rem;
 }
 main .btn-outline-success,
 main .btn-outline-success:hover {
@@ -129,12 +129,13 @@ main .btn-outline-success:hover {
 
 main .btn-outline-success:hover {
   color: #fff;
-  background-color: #0e267a;
+  background-color: #6b92e8;
+  border: 1px solid #6b92e8;
 }
 
 main .btn-outline-success:not(:disabled):not(.disabled):active {
-  background: #0e267a;
-  border-color: #0e267a;
+  background: #6b92e8;
+  border-color: #6b92e8;
 }
 
 main .btn-outline-success.focus,
@@ -154,6 +155,8 @@ main .btn-outline-success.focus,
 form.card-user-reg.mb-5 {
   background: #f1f1f1;
   box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  width: 992px;
+  margin: 0 auto;
 }
 
 form.card-user-reg div.col,
@@ -168,6 +171,28 @@ form.card-user-reg div.about-you {
 
 form.card-user-reg div.about-you,
 form.card-user-reg div.general {
-  background: rgb(14, 38, 123);
+  background: #6b92e8;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.col.title {
+  height: 63px;
+}
+
+.form-group {
+  padding: 0rem 2rem;
+  text-align: left;
+  letter-spacing: -0.015em;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: normal;
+  font-size: 16px;
+}
+
+div.register-form form.card-user-reg div {
+  text-align: center;
+  margin: 0 auto;
+}
+
+div.register-form form.card-user-reg div.form-group {
+  text-align: left;
 }
