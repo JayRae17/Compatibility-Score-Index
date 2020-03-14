@@ -193,6 +193,12 @@ div.register-form form.card-user-reg div {
   margin: 0 auto;
 }
 
+div.register-form form.card-user-reg .col.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 div.register-form form.card-user-reg div.form-group {
   text-align: left;
 }
