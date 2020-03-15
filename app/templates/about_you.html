@@ -6,7 +6,12 @@
     alt=""
   />
   <h2 class="mb-5 mt-3">User Registration</h2>
-  <form class="card-user-reg mb-5">
+  <form
+    class="card-user-reg mb-5"
+    action="{{ url_for('aboutRegular') }}"
+    method="POST"
+  >
+    {{ form.csrf_token }}
     <div class="row my-2">
       <div class="col general title">
         General
@@ -15,107 +20,71 @@
         About You
       </div>
     </div>
-    <div class="row mt-5">
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Sex</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Female"
-          />
+    <div class="form-body-about">
+      <div class="row mt-5">
+        <div class="col">
+          <div class="form-group">
+            {{ form.sex.label }} {{ form.sex(class='form-control sel') }}
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            {{ form.age.label }} {{ form.age(class='form-control sel') }}
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            {{ form.height.label }} {{ form.height(class='form-control sel') }}
+          </div>
         </div>
       </div>
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Age</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="16-20"
-          />
+      <div class="row">
+        <div class="col">
+          <div class="form-group mt-3">
+            {{ form.ethnicity.label }} {{ form.ethnicity(class='form-control
+            ques') }}
+          </div>
         </div>
       </div>
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Height</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="5 ft 5 in"
-          />
+      <div class="row">
+        <div class="col">
+          <div class="form-group mt-3">
+            {{ form.personality.label }} {{ form.personality(class='form-control
+            ques') }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group mt-3">
-          <label for="exampleFormControlInput1">What is your ethnicity?</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Black (Coloured)"
-          />
+      <div class="row">
+        <div class="col">
+          <div class="form-group mt-3">
+            {{ form.work.label }} {{ form.work(class='form-control ques') }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group mt-3">
-          <label for="exampleFormControlInput1">What is your personality type?</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Introvert"
-          />
+      <div class="row">
+        <div class="col">
+          <div class="form-group mt-3">
+            {{ form.leadership.label }} {{ form.leadership(class='form-control
+            ques') }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group mt-3">
-          <label for="exampleFormControlInput1">To which work area do you belong?</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Business"
-          />
+      <div class="row">
+        <div class="col">
+          <div class="form-group mt-3">
+            {{ form.education.label }} {{ form.education(class='form-control
+            ques') }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group mt-3">
-          <label for="exampleFormControlInput1">How would you describe your leadership style?</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Democratic"
-          />
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group mt-3">
-          <label for="exampleFormControlInput1">Which is your level of education?</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Bachelors"
-          />
-        </div>
-      </div>
-    </div>
       <div class="row my-2">
+        <div class="col mt-5 mb-4">
+          <a
+            class="btn btn-outline-success my-2 my-sm-0"
+            href="{{ url_for('registerRegular') }}"
+            >Previous</a
+          >
+        </div>
         <div class="col mt-5 mb-4">
           <a
             class="btn btn-outline-success my-2 my-sm-0"
@@ -124,7 +93,7 @@
           >
         </div>
       </div>
-  </form>
     </div>
+  </form>
 </div>
 {% endblock %}

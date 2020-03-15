@@ -202,3 +202,28 @@ div.register-form form.card-user-reg .col.title {
 div.register-form form.card-user-reg div.form-group {
   text-align: left;
 }
+
+.form-control {
+  width: 278px;
+}
+
+.form-control.email,
+.form-control.ques {
+  width: 683px;
+}
+
+.form-control.sel {
+  width: 181px;
+}
+
+.form-body {
+  width: 816px;
+}
+
+.form-body-about {
+  width: 760px;
+}
+
+.form-body-about .col {
+  padding: 0px;
+}

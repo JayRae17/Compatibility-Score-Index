@@ -6,7 +6,12 @@
     alt=""
   />
   <h2 class="mb-5 mt-3">User Registration</h2>
-  <form class="card-user-reg mb-5">
+  <form
+    class="card-user-reg mb-5"
+    action="{{ url_for('registerRegular') }}"
+    method="POST"
+  >
+    {{ form.csrf_token }}
     <div class="row my-2">
       <div class="col title">
         General
@@ -15,73 +20,47 @@
         About You
       </div>
     </div>
-    <div class="row mt-5">
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleFormControlInput1">First Name</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="John"
-          />
+    <div class="form-body">
+      <div class="row mt-5">
+        <div class="col">
+          <div class="form-group">
+            {{ form.fname.label }} {{ form.fname(class='form-control') }}
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            {{ form.lname.label }} {{ form.lname(class='form-control') }}
+          </div>
         </div>
       </div>
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Last Name</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="Doe"
-          />
+      <div class="row">
+        <div class="col">
+          <div class="form-group mt-3">
+            {{ form.email.label }} {{ form.email(class='form-control email',
+            placeholder="name@example.com") }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group mt-3">
-          <label for="exampleFormControlInput1">Email Address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-            placeholder="name@example.com"
-          />
+      <div class="row my-2">
+        <div class="col">
+          <div class="form-group">
+            {{ form.username.label }} {{ form.username(class='form-control') }}
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            {{ form.password.label }} {{ form.password(class='form-control') }}
+          </div>
         </div>
       </div>
     </div>
     <div class="row my-2">
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Username</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-          />
-        </div>
-      </div>
-      <div class="col">
-        <div class="form-group">
-          <label for="exampleFormControlInput1">Password</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleFormControlInput1"
-          />
-        </div>
-      </div>
-    </div>
-      <div class="row my-2">
-        <div class="col mt-5 mb-4">
-          <a
-            class="btn btn-outline-success my-2 my-sm-0"
-            href="{{ url_for('aboutRegular') }}"
-            >Next</a
-          >
-        </div>
+      <div class="col mt-5 mb-4">
+        <a
+          class="btn btn-outline-success my-2 my-sm-0"
+          href="{{ url_for('aboutRegular') }}"
+          >Next</a
+        >
       </div>
     </div>
   </form>
