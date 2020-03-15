@@ -34,3 +34,5 @@ class AboutYou(FlaskForm):
 
     education = SelectField('Which is your level of education?', choices=[('Bachelors', 'Bachelors'), (
         'Masters', 'Masters'), ('PhD', 'PhD'), ('Diploma', 'Diploma'), ('Associate Degree', 'Associate Degree')])
+    
+    hobby = StringField('What is your favourite hobby?', validators=[InputRequired()])
