@@ -172,6 +172,11 @@ form.card-user-reg div.about-you {
 form.card-user-reg div.about-you,
 form.card-user-reg div.general {
   background: #6b92e8;
+}
+
+form.card-user-reg div.about-you a,
+form.card-user-reg div.general a {
+  text-decoration: none;
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -189,7 +194,6 @@ form.card-user-reg div.general {
 }
 
 div.register-form form.card-user-reg div {
-  text-align: center;
   margin: 0 auto;
 }
 
@@ -216,6 +220,11 @@ div.register-form form.card-user-reg div.form-group {
   width: 181px;
 }
 
+.form-control.sel#height {
+  font-size: 15px;
+  width: 206px;
+}
+
 .form-body {
   width: 816px;
 }
@@ -226,4 +235,12 @@ div.register-form form.card-user-reg div.form-group {
 
 .form-body-about .col {
   padding: 0px;
+}
+
+.ques-container select.ques {
+  width: 447px;
+}
+
+.ques-container {
+  width: 500px;
 }
