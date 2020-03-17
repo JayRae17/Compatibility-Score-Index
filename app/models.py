@@ -71,14 +71,14 @@ class Regular (User):
 
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user.user_id'), primary_key=True)
-    gender = db.Column(db.Integer)
-    age = db.Column(db.Integer)
-    height = db.Column(db.Integer)
+    gender = db.Column(db.String(50))
+    age = db.Column(db.String(50))
+    height = db.Column(db.String(50))
     leadership = db.Column(db.String(30))
     ethnicity = db.Column(db.String(30))
     personality = db.Column(db.String(30))
-    education = db.Column(db.Integer)
-    hobby = db.Column(db.Integer)
+    education = db.Column(db.String(50))
+    hobby = db.Column(db.String(50))
 
     def __init__(self, type, first_name, last_name, email, username, password, gender, age, height, leadership, ethnicity, personality, education, hobby):
         super().__init__(type, first_name, last_name, email, username, password)

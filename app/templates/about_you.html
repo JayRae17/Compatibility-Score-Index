@@ -82,24 +82,25 @@
       <div class="row">
         <div class="col">
           <div class="form-group mt-3">
+            {{ form.faculty.label }} {{ form.faculty(class='form-control ques')
+            }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group mt-3">
             {{ form.hobby.label }} {{ form.hobby(class='form-control ques') }}
           </div>
         </div>
       </div>
       <div class="row my-2">
         <div class="col mt-5 mb-4">
-          <a
-            class="btn btn-outline-success my-2 my-sm-0"
-            href="{{ url_for('registerRegular') }}"
-            >Previous</a
-          >
+          <!-- A POST request is being sent, not taking into consideration the redirect location because it is not set   -->
+          {{ form.previous(class='btn btn-outline-success my-2 my-sm-0') }}
         </div>
         <div class="col mt-5 mb-4">
-          <a
-            class="btn btn-outline-success my-2 my-sm-0"
-            href="{{ url_for('about') }}"
-            >Submit</a
-          >
+          {{ form.submit(class='btn btn-outline-success my-2 my-sm-0') }}
         </div>
       </div>
     </div>
