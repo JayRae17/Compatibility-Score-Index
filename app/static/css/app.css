@@ -1,15 +1,24 @@
+header.mb-3 {
+  background: #6b92e8;
+}
+
 body {
   font-family: "Montserrat", "Open Sans";
 }
 
+a.navbar-brand.ml-1 {
+  color: white;
+}
+
 /************************************** Navigation Area **************************************/
+
 .navbar-light .navbar-brand,
 .navbar-light .navbar-brand:hover {
   color: #21abcb;
 }
 
 .navbar-light .navbar-nav .nav-link:hover {
-  color: #957ae1;
+  color: #fff;
 }
 
 .navbar-brand {
@@ -24,7 +33,7 @@ body {
 
 .navbar-light .navbar-nav .nav-link,
 .navbar-light .navbar-nav .active > .nav-link {
-  color: #5a5a5a;
+  color: #fff;
   font-size: 15px;
 }
 
@@ -34,23 +43,23 @@ body {
 
 .btn-outline-success,
 .btn-outline-success:hover {
-  border: 1px solid #957ae1;
+  border: 1px solid #fff;
   box-sizing: border-box;
   border-radius: 6px;
   margin-right: 1rem;
   padding: 0.5rem 2.5rem;
-  color: #957ae1;
+  color: #fff;
   font-weight: 600;
 }
 
 .btn-outline-success:hover {
-  color: #fff;
-  background-color: #957ae1;
+  color: #6b92e8;
+  background-color: #fff;
 }
 
 .btn-outline-success:not(:disabled):not(.disabled):active {
-  background-color: #957ae1;
-  border-color: #957ae1;
+  background-color: #6b92e8;
+  border-color: #6b92e8;
 }
 
 .btn-outline-success.focus,
@@ -71,7 +80,7 @@ footer {
   margin-top: 2rem;
 }
 footer a.navbar-brand.ml-1 {
-  color: #21abcb;
+  color: #6b92e8;
   font-style: normal;
   font-weight: 600;
   font-size: 32px;
@@ -92,4 +101,146 @@ footer h5 {
 
 .col-6.mx-auto.p-3 {
   text-align: center;
+}
+
+/******************************** User Registration Form Region ********************************/
+.register-form.center-block {
+  text-align: center;
+  font-size: 40px;
+  line-height: 49px;
+  letter-spacing: -0.015em;
+  color: #3a3a3a;
+}
+.card-main {
+  background: #f1f1f1;
+  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  padding: 1rem 0rem 3rem 0rem;
+}
+main .btn-outline-success,
+main .btn-outline-success:hover {
+  border: 1px solid #0e267a;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-right: 1rem;
+  padding: 0.5rem 2.5rem;
+  color: #0e267a;
+  font-weight: 600;
+}
+
+main .btn-outline-success:hover {
+  color: #fff;
+  background-color: #6b92e8;
+  border: 1px solid #6b92e8;
+}
+
+main .btn-outline-success:not(:disabled):not(.disabled):active {
+  background: #6b92e8;
+  border-color: #6b92e8;
+}
+
+main .btn-outline-success.focus,
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem rgba(56, 48, 77, 0.5);
+}
+
+.card-main p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: rgb(14, 38, 123);
+}
+
+form.card-user-reg.mb-5 {
+  background: #f1f1f1;
+  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  width: 992px;
+  margin: 0 auto;
+}
+
+form.card-user-reg div.col,
+form.card-user-reg div.about-you {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: #0e267a;
+}
+
+form.card-user-reg div.about-you,
+form.card-user-reg div.general {
+  background: #6b92e8;
+}
+
+form.card-user-reg div.about-you a,
+form.card-user-reg div.general a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.col.title {
+  height: 63px;
+}
+
+.form-group {
+  padding: 0rem 2rem;
+  text-align: left;
+  letter-spacing: -0.015em;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: normal;
+  font-size: 16px;
+}
+
+div.register-form form.card-user-reg div {
+  margin: 0 auto;
+}
+
+div.register-form form.card-user-reg .col.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.register-form form.card-user-reg div.form-group {
+  text-align: left;
+}
+
+.form-control {
+  width: 278px;
+}
+
+.form-control.email,
+.form-control.ques {
+  width: 683px;
+}
+
+.form-control.sel {
+  width: 181px;
+}
+
+.form-control.sel#height {
+  font-size: 15px;
+  width: 206px;
+}
+
+.form-body {
+  width: 816px;
+}
+
+.form-body-about {
+  width: 760px;
+}
+
+.form-body-about .col {
+  padding: 0px;
+}
+
+.ques-container select.ques {
+  width: 447px;
+}
+
+.ques-container {
+  width: 500px;
 }
