@@ -6,23 +6,33 @@ from app.models import db
 from werkzeug.security import generate_password_hash
 
 
-class User(db.Model):
-    __tablename__ = 'user'
+class GeneralUser(db.Model):
+    __tablename__ = 'generaluser'
     user_id = db.Column(db.Integer, primary_key=True)
-    type = db.Column(db.String(20))
+    # type = db.Column(db.String(20))
     first_name = db.Column(db.String(30))
     last_name = db.Column(db.String(30))
     email = db.Column(db.String(50), unique=True)
     username = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(255))
 
-    __mapper_args__ = {
-        'polymorphic_identity': 'user',
-        'polymorphic_on': type
-    }
+    # __mapper_args__ = {
+    #     'polymorphic_identity': 'user',
+    #     'polymorphic_on': type
+    # }
 
-    def __init__(self, type, first_name, last_name, email, username, password):
-        self.type = type
+    # def __init__(self, type, first_name, last_name, email, username, password):
+    #     self.type = type
+    #     self.first_name = first_name
+    #     self.last_name = last_name
+    #     self.email = email
+    #     self.username = username
+    #     self.password = generate_password_hash(
+    #         password, method='pbkdf2:sha256')
+
+
+    # JADA ADDED
+    def __init__(self, first_name, last_name, email, username, password):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
@@ -46,14 +56,14 @@ class User(db.Model):
             return str(self.user_id)  # python 3 support
 
     def __repr__(self):
-        return '<User %r>' % (self.username)
+        return '<GeneralUser %r>' % (self.username)
 
 
-class Organizer (User):
+class Organizer (GeneralUser):
     __tablename__ = 'organizer'
 
     user_id = db.Column(db.Integer, db.ForeignKey(
-        'user.user_id'), primary_key=True)
+        'generaluser.user_id'), primary_key=True)
     occupation = db.Column(db.String(30))
     groups = db.relationship('Grouped', backref='admin')
 
@@ -66,21 +76,23 @@ class Organizer (User):
     }
 
 
-class Regular (User):
+class Regular (GeneralUser):
     __tablename__ = 'regular'
 
     user_id = db.Column(db.Integer, db.ForeignKey(
-        'user.user_id'), primary_key=True)
-    gender = db.Column(db.Integer)
-    age = db.Column(db.Integer)
-    height = db.Column(db.Integer)
+        'generaluser.user_id'), primary_key=True)
+    gender = db.Column(db.String(50))
+    age = db.Column(db.String(50))
+    height = db.Column(db.String(50))
     leadership = db.Column(db.String(30))
     ethnicity = db.Column(db.String(30))
     personality = db.Column(db.String(30))
-    education = db.Column(db.Integer)
-    hobby = db.Column(db.Integer)
+    education = db.Column(db.String(50))
+    hobby = db.Column(db.String(50))
+    faculty = db.Column(db.String(50))
+    work = db.Column(db.String(50))
 
-    def __init__(self, type, first_name, last_name, email, username, password, gender, age, height, leadership, ethnicity, personality, education, hobby):
+    def __init__(self, type, first_name, last_name, email, username, password, gender, age, height, leadership, ethnicity, personality, education, hobby, faculty, work):
         super().__init__(type, first_name, last_name, email, username, password)
         self.ethnicity = ethnicity
         self.age = age
@@ -90,6 +102,8 @@ class Regular (User):
         self.gender = gender
         self.hobby = hobby
         self.education = education
+        self.faculty = faculty
+        self.work = work
 
     __mapper_args__ = {
         'polymorphic_identity': 'regular'

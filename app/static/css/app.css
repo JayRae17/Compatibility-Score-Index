@@ -28,10 +28,34 @@ body {
   background-color: #6B92E8;
 }
 
-.navbar-light .navbar-nav .nav-link:hover {
-  color: #957ae1;
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8);
 }
 
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #0E267A;
+}
+
+.nav-username{
+  color: #1F1F1F;
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+
+.nav-username:hover, .nav-username:focus {
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .show > .nav-link,
+.navbar-dark .navbar-nav .active > .nav-link,
+.navbar-dark .navbar-nav .nav-link.show,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: #fff;
+  font-weight: 600;
+}
 .navbar-brand {
   margin-right: 2rem;
   font-style: normal;
@@ -87,6 +111,24 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(149, 122, 225, 0.5);
 }
 
+.form-control {
+  display: block;
+
+  padding: .4rem .9rem;
+  line-height: 1.5;
+  color: #25282c;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
+}
+
+.form-grp{
+  width: 30%;
+}
+
+
 @media screen and (min-width: 992px) {
   .navbar-expand-lg .navbar-nav .nav-link {
     padding-left: 1rem;
@@ -124,10 +166,18 @@ footer h5 {
   text-align: center;
 }
 
+.container2 {
+  width: 100%;
+  margin-top: 5rem;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 /******************************** FOR MAIN ********************************/
 
-
+/*
 .container {
   width: 100%;
   padding-top: 3rem;
@@ -137,13 +187,383 @@ footer h5 {
   margin-left: auto;
 }
 
+*/
 
-/******************************** FOR FOOTER ********************************/
-.container2 {
+.container {
   width: 100%;
+  padding-top: 0rem;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.main{
+  width: 100%;
+  margin-top: 3rem;
+  margin-right: 8rem;
+  margin-left: 8rem;
+}
+
+
+
+/******************************** FOR SIDE BAR ********************************/
+
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  width: 320px;
+  
+}
+
+#sidebar {
+  min-width: 320px;
+  max-width: 320px;
+  min-height: 100vh;
+  background-color:rgba(236, 236, 236,0.5);
+  padding-left: 0rem;
+  padding-top: 4rem;
+}
+
+.sidebar-header{
+  margin-left: 3rem;
+}
+
+
+.img-thumbnail {
+  padding: 0.25rem;
+  margin-left: 3rem;
+  background: #c0d3ff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  max-width: 100%;
+  height: auto;
+}
+
+.abt{
+  margin-top: 3rem;
+  margin-left: 3rem;
+  margin-right: 2rem;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+}
+
+.abtP2{
+  -webkit-box-shadow: 0px 0px 4px #4195fc;
+  -moz-box-shadow: 0px 0px 4px #4195fc;
+   box-shadow: 0px 0px 4px #4195fc; 
+   border-radius: 6%;
+   padding: 1rem;
+}
+
+.rec-button{
+  border: none;
+  border-radius: 0rem;
+  background-color: #fff;
+  text-align: left;
+  box-sizing: border-box;
+  margin-right: 0rem;
+  margin-top: 1rem;
+  padding: 0.7rem 2.5rem;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+  width: 80%;
+}
+
+
+.num-button{
+  border: none;
+  border-radius: 0rem;
+  background: linear-gradient(90deg, #31D2F7 -313.56%, #FFAED2 398.31%);
+  box-sizing: border-box;
+  margin-top: 1rem;
+  padding: 0.7rem 0rem;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+  width: 18%;
+  display: inline-block;
+  transition: 0.7s;
+}
+
+
+.num-button:hover{
+  background: linear-gradient(90deg, #31D2F7 -313.56%, #FFAED2 398.31%);
+  opacity: 0.5;
+}
+
+.socialmd{
   margin-top: 5rem;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
+  margin-bottom: 2rem;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  #sidebar {
+      margin-left: -320px;
+  }
+  #sidebar.active {
+      margin-left: 0;
+  }
+}
+
+
+/******************************** FOR DASHBOARD ********************************/
+
+.alert-primary {
+  color: #383d41;
+  background-color: #e4e6ff;
+  border-color: #e4e6ff;
+  margin-left: 1rem;
+  opacity: 0.7;
+  padding: 0.5rem 0.8rem;
+}
+
+
+
+.dash_header{
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: #99B0D1;
+  margin-top: 3.5rem;
+}
+
+
+.tile{
+  width: 240px;
+  height: 240px;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #31D2F7 -143.33%, #FF71AF 254.17%);
+  opacity: 0.6;
+  border-radius: 6px;
+  position: relative;
+  text-align: justify;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1;
+  border-radius: 0.25rem;
+  transition:  0.5s; 
+  /*transition: color 0.15s ease-in-out, background 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+*/
+}
+
+.tile:hover{
+  background: linear-gradient(90deg, #31D2F7 -143.33%, #FF71AF 254.17%);
+  opacity: 0.8;
+}
+
+.tile .grp_title{
+  padding-left: 7px;
+  padding-right: 7px;
+  position: absolute;
+  right: 0px;
+  left: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255,0.5);
+  color: black;
+}
+
+.tl{
+  padding-top: 1rem;
+}
+
+.add{
+
+  text-align: center;
+  
+}
+
+.grp_header{
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.grp_header2{
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
+.page_header{
+  text-align: center;
+}
+
+.btn.recom{
+  color: #fff;
+  background-color: #0E267A;
+  border: 1px solid #0E267A;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 1rem;
+  margin-left: 52%;
+}
+
+.btn.recom:hover{
+  color: #0E267A;
+  background-color: #fff;
+  border: 1px solid #0E267A;
+}
+
+.btn.recom2{
+  color: #fff;
+  background-color: #0E267A;
+  border: 1px solid #0E267A;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-bottom: 1rem;
+  margin-left: 2%;
+}
+
+.btn.recom2:hover{
+  color: #0E267A;
+  background-color: #fff;
+  border: 1px solid #0E267A;
+}
+
+/****************************** LANAI'S CSS **************************************/
+.register-form.center-block {
+  text-align: center;
+  font-size: 40px;
+  line-height: 49px;
+  letter-spacing: -0.015em;
+  color: #3a3a3a;
+}
+.card-main {
+  background: #f1f1f1;
+  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  padding: 1rem 0rem 3rem 0rem;
+}
+main .btn-outline-success,
+main .btn-outline-success:hover {
+  background-color: #0E267A;
+  border: 1px solid #0E267A;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-right: 1rem;
+  padding: 0.5rem 2.5rem;
+  color: #fff;
+  font-weight: 600;
+  
+}
+
+main .btn-outline-success:hover {
+  color: #0E267A;
+  background-color: #fff;
+  border: 1px solid #0E267A;
+}
+
+main .btn-outline-success:not(:disabled):not(.disabled):active {
+  background: #6b92e8;
+  border-color: #6b92e8;
+}
+
+main .btn-outline-success.focus,
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem rgba(56, 48, 77, 0.5);
+}
+
+.card-main p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: rgb(14, 38, 123);
+}
+
+form.card-user-reg.mb-5 {
+  background: #f1f1f1;
+  
+  width: 992px;
+  margin: 0 auto;
+}
+
+form.card-user-reg div.col,
+form.card-user-reg div.about-you {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: #0e267a;
+}
+
+form.card-user-reg div.about-you, 
+form.card-user-reg div.general {
+  background: #3050C2;
+}
+
+form.card-user-reg div.about-you a,
+form.card-user-reg div.general a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.col.title {
+  height: 63px;
+}
+
+.form-group {
+  padding: 0rem 2rem;
+  text-align: left;
+  letter-spacing: -0.015em;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: normal;
+  font-size: 16px;
+}
+
+div.register-form form.card-user-reg div {
+  margin: 0 auto;
+}
+
+div.register-form form.card-user-reg .col.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.register-form form.card-user-reg div.form-group {
+  text-align: left;
+}
+
+.form-control {
+  width: 278px;
+}
+
+.form-control.email,
+.form-control.ques {
+  width: 683px;
+}
+
+.form-control.sel {
+  width: 181px;
+}
+
+.form-control.sel#height {
+  font-size: 15px;
+  width: 206px;
+}
+
+.form-body {
+  width: 816px;
+}
+
+.form-body-about {
+  width: 760px;
+}
+
+.form-body-about .col {
+  padding: 0px;
+}
+
+.ques-container select.ques {
+  width: 447px;
+}
+
+.ques-container {
+  width: 500px;
 }
