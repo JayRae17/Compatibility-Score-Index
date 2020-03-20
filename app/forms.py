@@ -32,10 +32,10 @@ class SignUp(FlaskForm):
         EqualTo('password', message='Passwords must match.')
     ])
 
-    submit = SubmitField('Next')
+#     submit = SubmitField('Next')
 
 
-class AboutYou(FlaskForm):
+# class AboutYou(FlaskForm):
     sex = SelectField(
         'Sex', choices=[(0, 'Select an option'), ('Female', 'Female'), ('Male', 'Male')])
 
