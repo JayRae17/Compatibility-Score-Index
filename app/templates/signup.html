@@ -6,12 +6,11 @@
     alt=""
   />
   <h2 class="mb-5 mt-3">User Registration - General</h2>
-  {% include 'flash_messages.html' %}
   <form
     class="card-user-reg mb-5"
     action="{{ url_for('registerRegular') }}"
     method="POST"
-  >
+  >{% include 'flash_messages.html' %}
     {{ form.csrf_token }}
     <div class="row my-2">
       <div class="col title">
@@ -20,7 +19,6 @@
       <div class="col about-you title">
         <!-- JADA ADDED -->
         <a href=# >About You</a>
-        
       </div>
     </div>
     <div class="form-body">
