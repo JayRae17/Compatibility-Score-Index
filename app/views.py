@@ -85,6 +85,7 @@ def registerAs():
 def register(typeUser):
     # First Name, Last Name, Email, Password and Username are collected from the SignUp Form
     form = SignUp()
+
     if request.method == "POST" and form.validate_on_submit():
         # Checks in User Table if another user has this username
         username = form.username.data
@@ -105,8 +106,14 @@ def register(typeUser):
 
             # Success Message Appears
             flash('Successfully registered', 'success')
+
+            # Logs in a newly registered user
             login_user(user)
+
+            # Redirects to Profile Page
             return redirect(url_for('dashboard', username=user.username))
+    
+    # Flash errors in form and redirects to Register Form
     flash_errors(form)
     return render_template("signup.html", form=form)
 
