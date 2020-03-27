@@ -17,10 +17,10 @@ class GeneralUser(db.Model):
     username = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(255))
 
-    # __mapper_args__ = {
-    #     'polymorphic_identity': 'user',
-    #     'polymorphic_on': type
-    # }
+    __mapper_args__ = {
+        'polymorphic_identity': 'generaluser',
+        'polymorphic_on': type
+        }
 
     def __init__(self, type, first_name, last_name, occupation, email, username, password):
         self.type = type
@@ -84,8 +84,7 @@ class Regular (GeneralUser):
     faculty = db.Column(db.String(50))
     work = db.Column(db.String(50))
 
-    def __init__(self, type, first_name, last_name, email, username, password, gender, age, height, leadership, ethnicity, personality, education, hobby, faculty, work):
-        super().__init__(type, first_name, last_name, email, username, password)
+    def __init__(self, gender, age, height, leadership, ethnicity, personality, education, hobby, faculty, work):
         self.ethnicity = ethnicity
         self.age = age
         self.height = height

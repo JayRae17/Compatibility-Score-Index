@@ -247,7 +247,7 @@ footer h5 {
   line-height: 49px;
   letter-spacing: -0.015em;
   color: #3a3a3a;
-  margin-left: 15%;  /*JADA ADDED: TO CENTRE CARD FOR MY VERSION */
+  margin-left: 18%;  /*JADA ADDED: TO CENTRE CARD FOR MY VERSION */
 }
 
 .card-main {
@@ -294,8 +294,6 @@ main .btn-outline-success.focus,
 }
 
 
-
-form.card-user-reg.mb-5,
 form.card-user-login {
   background: #f1f1f1;
   box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
@@ -303,6 +301,20 @@ form.card-user-login {
   margin: 0 auto;
   padding-left: 2rem ;
   padding-bottom: 2rem;
+}
+
+form.card-user-reg.mb-5 {
+  background: #f1f1f1;
+  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  width: 992px;
+  padding-left: 4rem;
+  margin: 0 auto;
+}
+
+
+.register-form.center-block.less{
+  margin-left: 7%;
+  width: 100%;
 }
 
 form.card-user-login.mb-5 {
@@ -340,7 +352,7 @@ form.card-user-reg div.general a {
 }
 
 .form-group {
-  padding: 0rem 2rem;
+  padding: 0rem 1rem;
   text-align: left;
   letter-spacing: -0.015em;
   color: rgba(0, 0, 0, 0.8);
@@ -363,7 +375,7 @@ div.register-form form.card-user-reg div.form-group {
 }
 
 .form-control {
-  width: 25rem;
+  width: 278px;
 }
 
 .form-control.email,
@@ -373,6 +385,7 @@ div.register-form form.card-user-reg div.form-group {
 
 .form-control.sel {
   width: 181px;
+  background: linear-gradient(90deg, rgb(161, 238, 255) -313.56%, rgb(255, 201, 225) 398.31%);
 }
 
 .form-control.sel#height {
@@ -394,6 +407,7 @@ div.register-form form.card-user-reg div.form-group {
 
 .ques-container select.ques {
   width: 447px;
+  background: linear-gradient(90deg, rgb(161, 238, 255) -313.56%, rgb(255, 201, 225) 398.31%);
 }
 
 .ques-container {
@@ -604,6 +618,7 @@ div.register-form form.card-user-reg div.form-group {
 .grp_header2{
   margin-top: 5rem;
   margin-bottom: 2rem;
+  margin-left: 1rem;
 }
 
 .page_header{

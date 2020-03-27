@@ -1,24 +1,18 @@
-{% extends "base.html" %} {% block main %}
-<div class="register-form center-block">
-  <img
-    src="../static/images/Footer Logo.png"
-    class="d-inline-block align-top mt-5"
-    alt=""
-  />
-  <h2 class="mb-5 mt-3">About You</h2>
+{% extends "sidebar.html" %} {% block div %}
+<div class="register-form center-block less">
+  {% if current_user.is_authenticated %}
+  <div class = "page_header">
+    <h2 class = "dash_header">Who is {{current_user.username}}?</h2>
+   
+</div>
   <form
-    class="card-user-reg mb-5"
+    class="card-user-reg mt-4 mb-0"
     action="{{ url_for('aboutRegular') }}"
     method="POST"
   >
     {{ form.csrf_token }}
     <div class="row my-2">
-      <div class="col general title">
-        <a href="{{ url_for('registerRegular') }}">General</a>
-      </div>
-      <div class="col title">
-        About You
-      </div>
+      
     </div>
     <div class="form-body-about">
       <div class="row mt-5">
@@ -161,17 +155,11 @@
       </div>
       <div class="row my-2">
         <div class="col mt-5 mb-4">
-          <a
-            class="btn btn-outline-success my-2 my-sm-0"
-            href="{{ url_for('registerRegular') }}"
-            >Previous</a
-          >
-        </div>
-        <div class="col mt-5 mb-4">
           {{ form.submit(class='btn btn-outline-success my-2 my-sm-0') }}
         </div>
       </div>
     </div>
   </form>
 </div>
+{% endif %}
 {% endblock %}

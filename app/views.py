@@ -8,7 +8,7 @@ This file creates your application.
 from app import app, db, login_manager
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
-from app.forms import LoginForm, SignUp, SignUpOrgnzr
+from app.forms import LoginForm, SignUp, SignUpOrgnzr, AboutYou
 # from app.forms import AboutYou
 from werkzeug.security import check_password_hash
 from app.models import GeneralUser, Regular, Organizer, Grouped, joinGroup, Scores
@@ -172,25 +172,33 @@ def dashboard(username):
 
 @app.route('/aboutRegular/', methods=["GET", "POST"])
 def aboutRegular():
-    # How am I going to pass the above information
-    # form = SignUp()
-    print(form.username.data)
+    form = AboutYou()
+
     if request.method == "POST" and form.validate_on_submit():
-        user = Regular(type="regular", first_name=request.form['fname'], last_name=request.form['lname'], occupation= "", email=request.form['email'], username=request.form['username'], password=request.form['password'], gender=request.form['sex'], age=request.form['age'], height=request.form[
-                       'height'], leadership=request.form['leadership'], ethnicity=request.form['ethnicity'], personality=request.form['personality'], education=request.form['education'], hobby=request.form['hobby'], faculty=request.form['faculty'], work=request.form['work'])
+        sex = form.sex.data
+        age = form.age.data
+        height = form.height.data
+        ethnicity = form.ethnicity.data
+        personality = form.personality.data
+        work = form.work.data
 
+        leadership = form.leadership.data
+        education = form.education.data
+        hobby = form.hobby.data
+
+        faculty = form.faculty.data
+
+
+        user = Regular(ethnicity = ethnicity, age = age, height = height, personality = personality, leadership = leadership, gender = sex, hobby = hobby, education = education, faculty = faculty, work = work)
         db.session.add(user)
-
-        # Adds a regular user info to the database
+            
         db.session.commit()
+               
+        flash('successfully registered', 'success')
 
-        # Success Message Appears
-        flash('You have successfully registered :) ')
+        return redirect(url_for('dashboard', username=current_user.username)) 
+# in the case the data is not saved in the database
 
-        # Redirect User to Main Page
-        return redirect(url_for("home"))
-
-        # if form entry is invalid, redirected to the same page to fill in required details
     return render_template('about_you.html', form=form)
 
 
