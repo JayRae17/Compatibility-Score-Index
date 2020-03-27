@@ -20,6 +20,13 @@ body {
   padding: 0.5rem 0.8rem;
 }
 
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  font-size: medium;
+}
+
 /************************************** Navigation Area **************************************/
 .navbar {
   position: relative;
@@ -154,6 +161,45 @@ body {
 }
 
 
+/********************************* Dropdown Menu *********************************/
+button#dropdownMenuButton.btn-username {
+  background: none;
+  border: none;
+  margin-right: 1rem;
+  font-weight: 600;
+  color: #001681;
+}
+
+a.drop{
+  color: #6b92e8;
+  padding-left: 8px;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+a.drop:hover{
+  font-weight: 600;
+  text-decoration: none;
+
+}
+
+
+.navbar-light .navbar-nav .show > .nav-link:hover {
+  color: #6b92e8;
+  background: #f9f8f8;
+}
+
+.navbar-light .navbar-nav .show > .nav-link {
+  color: #6b92e8;
+}
+
+
+.dropdown-menu {
+  min-width: 7rem;
+  line-height: 2rem;
+
+}
+
 /******************************** Footer Region ********************************/
 
 footer {
@@ -192,6 +238,168 @@ footer h5 {
   margin-right: auto;
   margin-left: auto;
 }
+
+
+/****************************** User Registration Form Region  **************************************/
+.register-form.center-block {
+  text-align: center;
+  font-size: 40px;
+  line-height: 49px;
+  letter-spacing: -0.015em;
+  color: #3a3a3a;
+  margin-left: 15%;  /*JADA ADDED: TO CENTRE CARD FOR MY VERSION */
+}
+
+.card-main {
+  background: hsl(0, 0%, 95%);
+  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  padding: 1rem 0rem 3rem 0rem;
+}
+main .btn-outline-success,
+main .btn-outline-success:hover {
+  background-color: #0E267A;
+  border: 1px solid #0E267A;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-right: 1rem;
+  padding: 0.5rem 2.5rem;
+  color: #fff;
+  font-weight: 600;
+  
+}
+
+main .btn-outline-success:hover {
+  color: #0E267A;
+  background-color: #fff;
+  border: 1px solid #0E267A;
+}
+
+main .btn-outline-success:not(:disabled):not(.disabled):active {
+  background: #6b92e8;
+  border-color: #6b92e8;
+}
+
+main .btn-outline-success.focus,
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem rgba(56, 48, 77, 0.5);
+}
+
+.card-main p {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: rgb(14, 38, 123);
+}
+
+
+
+form.card-user-reg.mb-5,
+form.card-user-login {
+  background: #f1f1f1;
+  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  width: 992px;
+  margin: 0 auto;
+  padding-left: 2rem ;
+  padding-bottom: 2rem;
+}
+
+form.card-user-login.mb-5 {
+  width: 60%;
+}
+
+.form-control.login-user {
+  width: 50%;
+}
+
+
+form.card-user-reg div.col,
+form.card-user-reg div.about-you {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: #0e267a;
+}
+
+form.card-user-reg div.about-you, 
+form.card-user-reg div.general {
+  background: #3050C2;
+}
+
+form.card-user-reg div.about-you a,
+form.card-user-reg div.general a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.col.title {
+  height: 63px;
+}
+
+.form-group {
+  padding: 0rem 2rem;
+  text-align: left;
+  letter-spacing: -0.015em;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: normal;
+  font-size: 16px;
+}
+
+div.register-form form.card-user-reg div {
+  margin: 0 auto;
+}
+
+div.register-form form.card-user-reg .col.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.register-form form.card-user-reg div.form-group {
+  text-align: left;
+}
+
+.form-control {
+  width: 25rem;
+}
+
+.form-control.email,
+.form-control.ques {
+  width: 683px;
+}
+
+.form-control.sel {
+  width: 181px;
+}
+
+.form-control.sel#height {
+  font-size: 15px;
+  width: 206px;
+}
+
+.form-body {
+  width: 816px;
+}
+
+.form-body-about {
+  width: 760px;
+}
+
+.form-body-about .col {
+  padding: 0px;
+}
+
+.ques-container select.ques {
+  width: 447px;
+}
+
+.ques-container {
+  width: 500px;
+}
+
 
 /******************************** FOR MAIN ********************************/
 
@@ -389,6 +597,8 @@ footer h5 {
 .grp_header{
   margin-top: 2.5rem;
   margin-bottom: 1rem;
+  text-align: left;
+  margin-left: 1rem;
 }
 
 .grp_header2{
@@ -432,148 +642,3 @@ footer h5 {
   border: 1px solid #0E267A;
 }
 
-/****************************** LANAI'S CSS **************************************/
-.register-form.center-block {
-  text-align: center;
-  font-size: 40px;
-  line-height: 49px;
-  letter-spacing: -0.015em;
-  color: #3a3a3a;
-  margin-left: 15%;  /*JADA ADDED: TO CENTRE CARD FOR MY VERSION */
-}
-
-.card-main {
-  background: #f1f1f1;
-  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
-  padding: 1rem 0rem 3rem 0rem;
-}
-main .btn-outline-success,
-main .btn-outline-success:hover {
-  background-color: #0E267A;
-  border: 1px solid #0E267A;
-  box-sizing: border-box;
-  border-radius: 6px;
-  margin-right: 1rem;
-  padding: 0.5rem 2.5rem;
-  color: #fff;
-  font-weight: 600;
-  
-}
-
-main .btn-outline-success:hover {
-  color: #0E267A;
-  background-color: #fff;
-  border: 1px solid #0E267A;
-}
-
-main .btn-outline-success:not(:disabled):not(.disabled):active {
-  background: #6b92e8;
-  border-color: #6b92e8;
-}
-
-main .btn-outline-success.focus,
-.btn-outline-success:focus {
-  box-shadow: 0 0 0 0.2rem rgba(56, 48, 77, 0.5);
-}
-
-.card-main p {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 30px;
-  letter-spacing: -0.015em;
-  color: rgb(14, 38, 123);
-}
-
-form.card-user-reg.mb-5 {
-  background: #f1f1f1;
-  
-  width: 992px;
-  margin: 0 auto;
-}
-
-form.card-user-reg div.col,
-form.card-user-reg div.about-you {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 30px;
-  letter-spacing: -0.015em;
-  color: #0e267a;
-}
-
-form.card-user-reg div.about-you, 
-form.card-user-reg div.general {
-  background: #3050C2;
-}
-
-form.card-user-reg div.about-you a,
-form.card-user-reg div.general a {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.col.title {
-  height: 63px;
-}
-
-.form-group {
-  padding: 0rem 2rem;
-  text-align: left;
-  letter-spacing: -0.015em;
-  color: rgba(0, 0, 0, 0.8);
-  font-weight: normal;
-  font-size: 16px;
-}
-
-div.register-form form.card-user-reg div {
-  margin: 0 auto;
-}
-
-div.register-form form.card-user-reg .col.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-div.register-form form.card-user-reg div.form-group {
-  text-align: left;
-}
-
-.form-control {
-  width: 278px;
-}
-
-.form-control.email,
-.form-control.ques {
-  width: 683px;
-}
-
-.form-control.sel {
-  width: 181px;
-}
-
-.form-control.sel#height {
-  font-size: 15px;
-  width: 206px;
-}
-
-.form-body {
-  width: 816px;
-}
-
-.form-body-about {
-  width: 760px;
-}
-
-.form-body-about .col {
-  padding: 0px;
-}
-
-.ques-container select.ques {
-  width: 447px;
-}
-
-.ques-container {
-  width: 500px;
-}

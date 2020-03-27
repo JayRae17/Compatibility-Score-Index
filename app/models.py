@@ -9,9 +9,10 @@ from werkzeug.security import generate_password_hash
 class GeneralUser(db.Model):
     __tablename__ = 'generaluser'
     user_id = db.Column(db.Integer, primary_key=True)
-    # type = db.Column(db.String(20))
+    type = db.Column(db.String(20))
     first_name = db.Column(db.String(30))
     last_name = db.Column(db.String(30))
+    occupation = db.Column(db.String(30))
     email = db.Column(db.String(50), unique=True)
     username = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(255))
@@ -21,20 +22,11 @@ class GeneralUser(db.Model):
     #     'polymorphic_on': type
     # }
 
-    # def __init__(self, type, first_name, last_name, email, username, password):
-    #     self.type = type
-    #     self.first_name = first_name
-    #     self.last_name = last_name
-    #     self.email = email
-    #     self.username = username
-    #     self.password = generate_password_hash(
-    #         password, method='pbkdf2:sha256')
-
-
-    # JADA ADDED
-    def __init__(self, first_name, last_name, email, username, password):
+    def __init__(self, type, first_name, last_name, occupation, email, username, password):
+        self.type = type
         self.first_name = first_name
         self.last_name = last_name
+        self.occupation = occupation
         self.email = email
         self.username = username
         self.password = generate_password_hash(
@@ -56,7 +48,7 @@ class GeneralUser(db.Model):
             return str(self.user_id)  # python 3 support
 
     def __repr__(self):
-        return '<GeneralUser %r>' % (self.username)
+        return '<User %r>' % (self.username)
 
 
 class Organizer (GeneralUser):

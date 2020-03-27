@@ -4,8 +4,9 @@
     <div class="row">
         <div class="col-4">
             <nav id="sidebar">
+                {% if current_user.is_authenticated %}
                 <div class="sidebar-header">
-                    <h4> {{user.first_name}} {{user.last_name}}</h4>
+                    <h4> {{current_user.first_name}} {{current_user.last_name}}</h4>
                 </div>
 
                 <div>
@@ -48,34 +49,47 @@
 
 
 
+                {% if current_user.type == "organizer" %}
 
-
-                <ul class="list-unstyled components">
-                
-                    <li>
-                        <button class=" btn rec-button">My Groups</button> <button class="btn num-button">0</button>
-                    </li>
+                    <ul class="list-unstyled components">
                     
-                    <li>
-                        <button class="btn rec-button">Friends</button> <button class="btn num-button">0</button>
-                    </li>
-                    <li>
-                        <button class="btn rec-button">Messages</button> <button class="btn num-button">0</button>
-                    </li>
-                </ul>
-            <div class = "socialmd">
-               <a href = "#"> <img src="../static/images/facebook.png" width="24" height="24" class="d-inline-block align-top mr-4" alt=""/> </a>
-               <a href = "#"><img src="../static/images/linkedin.png" width="24" height="24" class="d-inline-block align-top mr-4" alt=""/> </a>
-               <a href = "#"><img src="../static/images/instagram.png" width="24" height="24" class="d-inline-block align-top mr-4" alt=""/> </a>
-               <a href = "#"><img src="../static/images/email.png" width="24" height="24" class="d-inline-block align-top mr-4" alt=""/> </a>
+                        <li>
+                            <button class=" btn rec-button">My Sets</button> <button class="btn num-button">0</button>
+                        </li>
+                    </ul>
+
+                {% else %}
+
+                    <ul class="list-unstyled components">
+                    
+                        <li>
+                            <button class=" btn rec-button">My Groups</button> <button class="btn num-button">0</button>
+                        </li>
+                        
+                        <li>
+                            <button class="btn rec-button">Friends</button> <button class="btn num-button">0</button>
+                        </li>
+                        <li>
+                            <button class="btn rec-button">Messages</button> <button class="btn num-button">0</button>
+                        </li>
+                    </ul>
+
+                {% endif %}
+
+                <div class = "socialmd">
+                <a href = "#"> <img src="../static/images/facebook.png" width="24" height="24" class="d-inline-block align-top mr-4" alt=""/> </a>
+                <a href = "#"><img src="../static/images/linkedin.png" width="24" height="24" class="d-inline-block align-top mr-4" alt=""/> </a>
+                <a href = "#"><img src="../static/images/instagram.png" width="24" height="24" class="d-inline-block align-top mr-4" alt=""/> </a>
+                <a href = "#"><img src="../static/images/email.png" width="24" height="24" class="d-inline-block align-top mr-4" alt=""/> </a>
+                </div>
+                </nav>
             </div>
-            </nav>
-        </div>
-        <div class = "col-8">
-            <div class="content">
-                {% block div %}{% endblock %}
+            <div class = "col-8">
+                <div class="content">
+                    {% block div %}{% endblock %}
+                </div>
             </div>
-        </div>
+        {% endif %}
     </div>
 
   {% endblock %}

@@ -8,15 +8,44 @@ class LoginForm(FlaskForm):
 
     username = StringField('Username', validators=[InputRequired()])
     password = PasswordField('Password', validators=[InputRequired()])
+    submit = SubmitField('Submit')
 
 
 class SignUp(FlaskForm):
     "Form used to Register a New User"
     fname = StringField('First Name:', validators=[DataRequired(), Length(
-        min=1, max=30, message=('Name should be Characters Only'))])
+        min=4, max=30, message=('Name should be Characters Only'))])
 
     lname = StringField('Last Name:', validators=[DataRequired(), Length(
-        min=1, max=30, message=('Name should be Characters Only'))])
+        min=4, max=30, message=('Name should be Characters Only'))])
+
+
+    email = StringField('Email Address', validators=[
+                        DataRequired(), Email(message=('Please enter a valid email address.'))])
+
+    username = StringField('Username', validators=[DataRequired(), Length(
+        min=4, max=30, message=('Username should be between 4 to 30 characters'))])
+
+    password = PasswordField('Password', [
+        DataRequired(message="Please enter a password."),
+    ])
+
+    confirmPassword = PasswordField('Repeat Password', [
+        EqualTo('password', message='Passwords must match.')
+    ])
+
+    submit = SubmitField('Submit')
+
+
+class SignUpOrgnzr(FlaskForm):
+    "Form used to Register a New User"
+    fname = StringField('First Name:', validators=[DataRequired(), Length(
+        min=4, max=30, message=('Name should be Characters Only'))])
+
+    lname = StringField('Last Name:', validators=[DataRequired(), Length(
+        min=4, max=30, message=('Name should be Characters Only'))])
+    
+    occupation = StringField('Occupation', validators=[DataRequired()])
 
     email = StringField('Email Address', validators=[
                         DataRequired(), Email(message=('Please enter a valid email address.'))])
@@ -32,10 +61,9 @@ class SignUp(FlaskForm):
         EqualTo('password', message='Passwords must match.')
     ])
 
-#     submit = SubmitField('Next')
+    submit = SubmitField('Submit')
 
-
-# # class AboutYou(FlaskForm):
+# class AboutYou(FlaskForm):
 #     sex = SelectField(
 #         'Sex', choices=[(0, 'Select an option'), ('Female', 'Female'), ('Male', 'Male')])
 
@@ -65,4 +93,4 @@ class SignUp(FlaskForm):
 #     faculty = SelectField('To which faculty do you belong?', choices=[(0, 'Select an option'), ('Science and Technology', 'Science and Technology'), (
 #         'Medical Sciences', 'Medical Sciences'), ('Social Sciences', 'Social Sciences'), ('Humanities', 'Humanities'), ('Engineering', 'Engineering'), ('Law', 'Law')])
 
-    submit = SubmitField('Submit')
+#     submit = SubmitField('Submit')

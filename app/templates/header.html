@@ -34,21 +34,51 @@
       </li>
     </ul>
 
-    <form method="post" action="{{ url_for('result') }}" class = "form-grp">
-      <input type="text" class = "form-control" placeholder="Search.."> 
-
-    </form>
-    
     <ul class="navbar-nav">
-        <li class="nav-item nav-link mr-4">  
-        <a class="nav-username" href=# >  <img
-          src="../static/images/account.png"
-          width="24"
-          height="24"
-          class="d-inline-block align-top mr-2"
-          alt=""
-        />User</a>
+      {% if current_user.is_authenticated %}
+      <li class="nav-item">
+        <form method="post" action="{{ url_for('result') }}" class="mt-1 mr-3">
+          <input type="text" class="form-control" placeholder="Search..." />
+        </form>
       </li>
+
+      <div class="dropdown nav-item">
+        <button
+          class="btn-username btn dropdown-toggle"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          
+          {{current_user.username}}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a
+            class="drop"
+            href="{{ url_for('dashboard', username=current_user.username) }}"
+          >
+            Your Profile</a
+          >
+          <a class=" drop " href="{{ url_for('logout') }}">Log Out</a>
+        </div>
+      </div>
+      {% else %}
+      <li class="nav-item">
+        <a
+          class="btn btn-outline-success my-2 my-sm-0"
+          href="{{ url_for('login') }}"
+          >Log In</a
+        >
+      </li>
+      <li class="nav-item">
+        <a
+          class="btn btn-outline-success-V2 my-2 my-sm-0"
+          href="{{ url_for('register') }}"
+          >Register</a
+        >
+      </li>
+      {% endif %}
     </ul>
   </div>
 </nav>

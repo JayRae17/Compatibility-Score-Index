@@ -5,12 +5,12 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
-from app import app
-from app import db, login_manager
+from app import app, db, login_manager
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
-from app.forms import LoginForm, SignUp
+from app.forms import LoginForm, SignUp, SignUpOrgnzr
 # from app.forms import AboutYou
+from werkzeug.security import check_password_hash
 from app.models import GeneralUser, Regular, Organizer, Grouped, joinGroup, Scores
 
 
@@ -30,30 +30,37 @@ def about():
     return render_template('about.html')
 
 
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+
     form = LoginForm()
-    if request.method == "POST":
-        # change this to actually validate the entire form submission
-        # and not just one field
-        if form.username.data:
-            # Get the username and password values from the form.
+    if request.method == "POST" and form.validate_on_submit():
 
-            # using your model, query database for a user based on the username
-            # and password submitted. Remember you need to compare the password hash.
-            # You will need to import the appropriate function to do so.
-            # Then store the result of that query to a `user` variable so it can be
-            # passed to the login_user() method below.
+        # Query if User exists
+        user = db.session.query(GeneralUser).filter_by(
+            username=form.username.data).first()
 
-            # get user id, load into session
+        # If valid credentials, flash success and redirect
+        if user is not None and check_password_hash(user.password, form.password.data):
             login_user(user)
+            return redirect(url_for('dashboard', username=current_user.username))
 
-            # remember to flash a message to the user
-            # they should be redirected to a secure-page route instead
-            return redirect(url_for("home"))
+        # Flash error message with incorrect username/password
+        flash(u'Invalid Credentials', 'danger')
     return render_template("login.html", form=form)
 
+
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    # Logout the user and end the session
+    logout_user()
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('home'))
 
 
 @app.route('/register')
@@ -88,7 +95,6 @@ def registerRegular():
     form = SignUp()
 
     if request.method == "POST" and form.validate_on_submit():
-        #JADA ADDED: THIS JUST FOR NOW TO MAKE REGISTRATION WORK
         fname = form.fname.data
         lname = form.lname.data
         username = form.username.data
@@ -104,7 +110,7 @@ def registerRegular():
 
         if existing_username is None and existing_email is None:
              #JADA ADDED
-            user = GeneralUser(first_name = fname, last_name=lname, username = username, password = password, email = email)
+            user = GeneralUser(type = "regular", first_name = fname, last_name=lname, occupation = "", username = username, password = password, email = email)
             db.session.add(user)
             # Adds a regular user info to the database
             db.session.commit()
@@ -113,47 +119,80 @@ def registerRegular():
             flash('successfully registered', 'success')
 
             # return redirect(url_for("aboutRegular"))
-            return redirect(url_for('dashboard', userid = user.user_id))    #JADA ADDED
+            login_user(user)
+            return redirect(url_for('dashboard', username=current_user.username))
     flash_errors(form)
     return render_template("signup.html", form=form)
 
 
+@app.route('/registerOrganizer/', methods=["GET", "POST"])
+def registerOrgnzr():
+    form = SignUpOrgnzr()
+
+    if request.method == "POST" and form.validate_on_submit():
+        fname = form.fname.data
+        lname = form.lname.data
+        occupation = form.occupation.data
+        username = form.username.data
+        password = form.password.data
+        email = form.email.data
 
 
-# @app.route('/aboutRegular/', methods=["GET", "POST"])
-# def aboutRegular():
-#     # How am I going to pass the above information
-#     form = SignUp()
-#     print(form.username.data)
-#     if request.method == "POST" and form.validate_on_submit():
-#         user = Regular(type="regular", first_name=request.form['fname'], last_name=request.form['lname'], email=request.form['email'], username=request.form['username'], password=request.form['password'], gender=request.form['sex'], age=request.form['age'], height=request.form[
-#                        'height'], leadership=request.form['leadership'], ethnicity=request.form['ethnicity'], personality=request.form['personality'], education=request.form['education'], hobby=request.form['hobby'], faculty=request.form['faculty'], work=request.form['work'])
+        # Checks in User Table if another user has this username
+        existing_username = db.session.query(GeneralUser).filter_by(username=username).first()
 
-#         db.session.add(user)
+        # Checks in User Table if another user has this email address
+        existing_email = db.session.query(GeneralUser).filter_by(email=email).first()
 
-#         # Adds a regular user info to the database
-#         db.session.commit()
+        if existing_username is None and existing_email is None:
+             #JADA ADDED
+            user = GeneralUser(type = "organizer", first_name = fname, last_name=lname, occupation = occupation, username = username, password = password, email = email)
+            db.session.add(user)
+            # Adds a regular user info to the database
+            db.session.commit()
+            
+            # Success Message Appears
+            flash('successfully registered', 'success')
 
-#         # Success Message Appears
-#         flash('You have successfully registered :) ')
-
-#         # Redirect User to Main Page
-#         return redirect(url_for("home"))
-
-#         # if form entry is invalid, redirected to the same page to fill in required details
-#     return render_template('about_you.html', form=form)
-
-
-@app.route('/registerOrganizer/')
-def registerOrganizer():
-    return render_template('signup.html')
+            login_user(user)
+            return redirect(url_for('dashboard', username=current_user.username))    #JADA ADDED
+    flash_errors(form)
+    return render_template("signupOrgnzr.html", form=form)
 
 
 
-@app.route('/dashboard/<userid>')
-def dashboard(userid):
+
+@app.route('/dashboard/<username>')
+@login_required
+def dashboard(username):
     """Render the website's dashboard page."""
-    return render_template('dashbrd.html', user = db.session.query(GeneralUser).filter_by(user_id = userid).first()) #will have to reflect both users
+    return render_template('dashbrd.html', user = db.session.query(GeneralUser).filter_by(username = username).first())
+
+
+
+@app.route('/aboutRegular/', methods=["GET", "POST"])
+def aboutRegular():
+    # How am I going to pass the above information
+    # form = SignUp()
+    print(form.username.data)
+    if request.method == "POST" and form.validate_on_submit():
+        user = Regular(type="regular", first_name=request.form['fname'], last_name=request.form['lname'], occupation= "", email=request.form['email'], username=request.form['username'], password=request.form['password'], gender=request.form['sex'], age=request.form['age'], height=request.form[
+                       'height'], leadership=request.form['leadership'], ethnicity=request.form['ethnicity'], personality=request.form['personality'], education=request.form['education'], hobby=request.form['hobby'], faculty=request.form['faculty'], work=request.form['work'])
+
+        db.session.add(user)
+
+        # Adds a regular user info to the database
+        db.session.commit()
+
+        # Success Message Appears
+        flash('You have successfully registered :) ')
+
+        # Redirect User to Main Page
+        return redirect(url_for("home"))
+
+        # if form entry is invalid, redirected to the same page to fill in required details
+    return render_template('about_you.html', form=form)
+
 
 
 @app.route('/results',  methods=['GET', 'POST'])
@@ -161,19 +200,31 @@ def result():
     """Render the website's result page."""
     return render_template('results.html')
 
-
 # user_loader callback. This callback is used to reload the user object from
 # the user ID stored in the session
 @login_manager.user_loader
-def load_user(id):
-    return User.query.get(int(id))
+def load_user(user_id):
+    return GeneralUser.query.get(int(user_id))
 
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    """Redirect unauthorized users to Login page."""
+    flash('You must be logged in to view that page.')
+    return redirect(url_for('login'))
 ###
 # The functions below should be applicable to all Flask apps.
 ###
 
 
+@app.route('/<file_name>.txt')
+def send_text_file(file_name):
+    """Send your static text file."""
+    file_dot_text = file_name + '.txt'
+    return app.send_static_file(file_dot_text)
+
 # Flash errors from the form if validation fails
+
 
 def flash_errors(form):
     for field, errors in form.errors.items():
@@ -182,13 +233,6 @@ def flash_errors(form):
                 getattr(form, field).label.text,
                 error
             ), 'danger')
-
-
-@app.route('/<file_name>.txt')
-def send_text_file(file_name):
-    """Send your static text file."""
-    file_dot_text = file_name + '.txt'
-    return app.send_static_file(file_dot_text)
 
 
 @app.after_request
