@@ -115,7 +115,7 @@ def register(typeUser):
 
             # Redirects to Profile Page
             return redirect(url_for('dashboard', username=user.username))
-    
+
     # Flash errors in form and redirects to Register Form
     flash_errors(form)
     return render_template("signup.html", form=form)
@@ -124,8 +124,7 @@ def register(typeUser):
 @app.route('/about/<typeUser>', methods=["GET", "POST"])
 def aboutUser(typeUser):
     # How am I going to pass the above information
-    # form = SignUp()
-    print(form.username.data)
+    form = SignUp()
     if request.method == "POST" and form.validate_on_submit():
         user = Regular(type="regular", first_name=request.form['fname'], last_name=request.form['lname'], email=request.form['email'], username=request.form['username'], password=request.form['password'], gender=request.form['sex'], age=request.form['age'], height=request.form[
                        'height'], leadership=request.form['leadership'], ethnicity=request.form['ethnicity'], personality=request.form['personality'], education=request.form['education'], hobby=request.form['hobby'], faculty=request.form['faculty'], work=request.form['work'])
