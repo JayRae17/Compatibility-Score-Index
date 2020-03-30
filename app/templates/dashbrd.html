@@ -26,12 +26,14 @@
         </div> -->
 
         <div class = "col-4">
+            <a href="{{ url_for('createGroup', username=current_user.username) }}">
             <button class = "tile add">
                 <img src="../static/images/plus.png" width="50" height="50" class = "img-add" />
             </button>
+            </a>
         </div>
     </div>
-    
+
 
         
     <h4 class = "grp_header2">Current Friends </h4>

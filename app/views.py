@@ -8,7 +8,7 @@ This file creates your application.
 from app import app, db, login_manager
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
-from app.forms import LoginForm, SignUp
+from app.forms import LoginForm, SignUp, newGroup
 # from app.forms import AboutYou
 from werkzeug.security import check_password_hash
 from app.models import User, Regular, Organizer, Grouped, joinGroup, Scores
@@ -100,9 +100,13 @@ def register(typeUser):
 
         # If unique email address and username provided then log new user
         if existing_username is None and existing_email is None:
-            user = User(type=typeUser, first_name=request.form['fname'], last_name=request.form['lname'],
-                        email=request.form['email'], username=request.form['username'], password=request.form['password'])
+            if typeUser == "Regular":
+                user = User(type=typeUser, first_name=request.form['fname'], last_name=request.form['lname'],
+                            email=request.form['email'], username=request.form['username'], password=request.form['password'])
 
+            else:
+                user = Organizer(type=typeUser, first_name=request.form['fname'], last_name=request.form['lname'],
+                                 email=request.form['email'], username=request.form['username'], password=request.form['password'], occupation="Lecturer")
             # Adds a regular user info to the database
             db.session.add(user)
             db.session.commit()
@@ -119,6 +123,31 @@ def register(typeUser):
     # Flash errors in form and redirects to Register Form
     flash_errors(form)
     return render_template("signup.html", form=form)
+
+
+@login_required
+@app.route('/<username>/createGroup',  methods=['GET', 'POST'])
+def createGroup(username):
+    """Render the website's  page."""
+    form = newGroup()
+    if request.method == "POST" and form.validate_on_submit():
+        # Collects username and email info from form
+        gp_name = form.group_name.data
+
+        if gp_name is not None:
+            gp = Grouped(
+                group_name=gp_name, purpose=request.form['purpose'], administrator=current_user.user_id)
+
+            # # Adds a regular user info to the database
+            db.session.add(gp)
+            db.session.commit()
+
+            # Success Message Appears
+            flash('Group Added', 'success')
+
+            # Redirects to Profile Page
+            return redirect(url_for('dashboard', username=current_user.username))
+    return render_template('createGroup.html', form=form)
 
 
 @app.route('/about/<typeUser>', methods=["GET", "POST"])
@@ -148,6 +177,7 @@ def aboutUser(typeUser):
 def result():
     """Render the website's result page."""
     return render_template('results.html')
+
 
 # user_loader callback. This callback is used to reload the user object from
 # the user ID stored in the session
