@@ -367,13 +367,6 @@ div.register-form form.card-user-reg div.form-group {
 }
 
 /******************************** FOR DASHBOARD ********************************/
-
-/* main .container {
-  width: 100%;
-  padding: 0rem;
-  margin: 0rem;
-} */
-
 .dash_header {
   font-weight: 600;
   font-size: 32px;
@@ -425,8 +418,9 @@ div.register-form form.card-user-reg div.form-group {
 }
 
 .grp_header {
-  margin-top: 2.5rem;
   margin-bottom: 1rem;
+  letter-spacing: -0.015em;
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .grp_header2 {

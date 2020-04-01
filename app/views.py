@@ -57,7 +57,15 @@ def login():
 @login_required
 def dashboard(username):
     """Render the website's dashboard page."""
-    return render_template('dashbrd.html', user=current_user.username)
+    if current_user.type == "Organizer":
+        getGroups = Grouped.query.filter_by(
+            administrator=current_user.user_id).all()
+    else:  # stubbed
+        getGroups = User.query.filter_by(
+            user_id=current_user.user_id).all()
+        print(getGroups)
+        print(current_user.type)
+    return render_template('dashbrd.html', gps=getGroups)
 
 
 @app.route("/logout")
