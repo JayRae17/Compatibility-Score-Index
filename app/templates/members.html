@@ -1,0 +1,23 @@
+{% extends "sidebar.html" %} {% block div %}
+<div>
+  <div class="page_header">
+    <h2 class="dash_header">{{gp_name.group_name}}</h2>
+    <!-- {% include 'flash_messages.html' %} -->
+  </div>
+
+  <h4 class="grp_header">Members:</h4>
+
+  <div class="row">
+    {% if current_user.type == "Organizer" and getMembers %} {% for item in
+    getMembers %}
+    <div class="col-4">
+      <button class="member-tile">
+        <div class="grp_title py-3">
+          {{ item.user_id }}
+        </div>
+      </button>
+    </div>
+    {% endfor %} {% endif %}
+  </div>
+</div>
+{% endblock %}

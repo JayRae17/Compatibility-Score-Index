@@ -77,3 +77,13 @@ class newGroup(FlaskForm):
         min=4, max=30, message=('Name should be Characters Only'))])
 
     submit = SubmitField('Add New Group')
+
+
+class joinNewGroup(FlaskForm):
+    group_name = StringField('Group Name:', validators=[DataRequired(), Length(
+        min=4, max=30, message=('Name should be Characters Only'))])
+
+    group_code = StringField('Code:', validators=[DataRequired(), Length(
+        min=4, max=30, message=('Name should be Characters Only'))])
+
+    submit = SubmitField('Join Group')

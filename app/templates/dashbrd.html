@@ -4,14 +4,17 @@
         {% include 'flash_messages.html' %}
     </div>
 
-    {% if current_user.type == "regular"%}
+    {% if current_user.type == "Regular"%}
         <h4 class = "grp_header">My Groups 
             <button class=" btn recom">Recommend Matches</button>
         </h4>
+    {% endif %} 
+
+    {% if current_user.type == "Regular" and not gps %}
         <div class = "alert alert-primary">
             You Currently Have No Groups
         </div>
-    {% endif %} 
+    {% endif %}
 
     {% if current_user.type == "Organizer" %}
         <h4 class = "grp_header">My Sets</h4>
@@ -27,9 +30,35 @@
         {% if current_user.type == "Organizer" and gps %}
             {% for item in gps %}
                 <div class="col-4">
+                    <a href="{{ url_for('members', username=current_user.username, gp_id=item.group_id) }}">
                     <button class = "tile">
                         <div class = "grp_title py-3"> 
                             {{ item.group_name }} <span class="code ml-4">{{ item.code }}</span>
+                        </div>
+                    </button>
+                    </a>
+                </div>
+            {% endfor %}
+        {% endif %} 
+
+        <div class = "col-4">
+            {% if current_user.type == "Organizer" %}
+            <a href="{{ url_for('createGroup', username=current_user.username) }}">
+            <button class = "tile add">
+                <img src="../static/images/plus.png" width="50" height="50" class = "img-add" />
+            </button>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class = "row">
+        {% if current_user.type == "Regular" and gps %}
+            {% for item in gps %}
+                <div class="col-4">
+                    <button class = "tile">
+                        <div class = "grp_title py-3"> 
+                            {{ item.group_id }}
                         </div>
                     </button>
                 </div>
@@ -37,16 +66,18 @@
         {% endif %} 
 
         <div class = "col-4">
-            <a href="{{ url_for('createGroup', username=current_user.username) }}">
+            {% if current_user.type == "Regular" %}
+            <a href="{{ url_for('joinAGroup', username=current_user.username) }}">
             <button class = "tile add">
                 <img src="../static/images/plus.png" width="50" height="50" class = "img-add" />
             </button>
             </a>
+            {% endif %}
         </div>
     </div>
 
 
-    {% if current_user.type == "regular" and gps %}
+    {% if current_user.type == "Regular" %}
        <h4 class = "grp_header2">Current Friends </h4>
         <div class = "alert alert-primary">
             You Currently Have No Friends
