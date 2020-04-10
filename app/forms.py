@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SelectField, SubmitField
+from wtforms import StringField, TextAreaField, PasswordField, SelectField, SubmitField
 from wtforms.validators import InputRequired, Email, DataRequired, Length, EqualTo
 
 
@@ -13,11 +13,9 @@ class LoginForm(FlaskForm):
 
 class SignUp(FlaskForm):
     "Form used to Register a New User"
-    fname = StringField('First Name:', validators=[DataRequired(), Length(
-        min=4, max=30, message=('Name should be Characters Only'))])
+    fname = StringField('First Name:', validators=[DataRequired()])
 
-    lname = StringField('Last Name:', validators=[DataRequired(), Length(
-        min=4, max=30, message=('Name should be Characters Only'))])
+    lname = StringField('Last Name:', validators=[DataRequired()])
 
 
     email = StringField('Email Address', validators=[
@@ -37,31 +35,6 @@ class SignUp(FlaskForm):
     submit = SubmitField('Submit')
 
 
-class SignUpOrgnzr(FlaskForm):
-    "Form used to Register a New User"
-    fname = StringField('First Name:', validators=[DataRequired(), Length(
-        min=4, max=30, message=('Name should be Characters Only'))])
-
-    lname = StringField('Last Name:', validators=[DataRequired(), Length(
-        min=4, max=30, message=('Name should be Characters Only'))])
-    
-    occupation = StringField('Occupation', validators=[DataRequired()])
-
-    email = StringField('Email Address', validators=[
-                        DataRequired(), Email(message=('Please enter a valid email address.'))])
-
-    username = StringField('Username', validators=[DataRequired(), Length(
-        min=4, max=30, message=('Username should not exceed 30 characters'))])
-
-    password = PasswordField('Password', [
-        DataRequired(message="Please enter a password."),
-    ])
-
-    confirmPassword = PasswordField('Repeat Password', [
-        EqualTo('password', message='Passwords must match.')
-    ])
-
-    submit = SubmitField('Submit')
 
 class AboutYou(FlaskForm):
     sex = SelectField(
@@ -94,3 +67,31 @@ class AboutYou(FlaskForm):
         'Medical Sciences', 'Medical Sciences'), ('Social Sciences', 'Social Sciences'), ('Humanities', 'Humanities'), ('Engineering', 'Engineering'), ('Law', 'Law')])
 
     submit = SubmitField('Submit')
+
+
+class newGroup(FlaskForm):
+    group_name = StringField('Group Name:', validators=[DataRequired(), Length(
+        min=4, max=30, message=('Name should be Characters Only'))])
+
+    purpose = StringField('Purpose:', validators=[DataRequired(), Length(
+        min=4, max=30, message=('Name should be Characters Only'))])
+
+    purpose = TextAreaField('Purpose:', validators= [Length(max=200)])
+
+    submit = SubmitField('Add New Group')
+
+class joinNewGroup(FlaskForm):
+    group_code = StringField('Code:', validators=[DataRequired(), Length(
+        min=4, max=30, message=('Name should be Characters Only'))])
+    
+
+    submit = SubmitField('Join Group')
+
+
+class Groupings(FlaskForm):
+    grpBy = SelectField('Criteria', choices=[(0, 'Select an option'), ('compatible', 'Compatible'), ('uncompatible', 'Uncompatible')])
+
+    numPersons = SelectField('Amount', choices=[(0, 'Select an option'), ('2', 'two'), ('3', 'three'), ('4', 'four'), ('5', 'five')])
+    
+    submit = SubmitField('Create')
+

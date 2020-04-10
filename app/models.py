@@ -6,27 +6,25 @@ from app.models import db
 from werkzeug.security import generate_password_hash
 
 
-class GeneralUser(db.Model):
-    __tablename__ = 'generaluser'
+class User(db.Model):
+    __tablename__ = 'user'
     user_id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(20))
     first_name = db.Column(db.String(30))
     last_name = db.Column(db.String(30))
-    occupation = db.Column(db.String(30))
     email = db.Column(db.String(50), unique=True)
     username = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(255))
 
     __mapper_args__ = {
-        'polymorphic_identity': 'generaluser',
+        'polymorphic_identity': 'user',
         'polymorphic_on': type
-        }
+    }
 
-    def __init__(self, type, first_name, last_name, occupation, email, username, password):
+    def __init__(self, type, first_name, last_name, email, username, password):
         self.type = type
         self.first_name = first_name
         self.last_name = last_name
-        self.occupation = occupation
         self.email = email
         self.username = username
         self.password = generate_password_hash(
@@ -51,11 +49,11 @@ class GeneralUser(db.Model):
         return '<User %r>' % (self.username)
 
 
-class Organizer (GeneralUser):
+class Organizer (User):
     __tablename__ = 'organizer'
 
     user_id = db.Column(db.Integer, db.ForeignKey(
-        'generaluser.user_id'), primary_key=True)
+        'user.user_id'), primary_key=True)
     occupation = db.Column(db.String(30))
     groups = db.relationship('Grouped', backref='admin')
 
@@ -64,15 +62,15 @@ class Organizer (GeneralUser):
         self.occupation = occupation
 
     __mapper_args__ = {
-        'polymorphic_identity': 'organizer'
+        'polymorphic_identity': 'Organizer'
     }
 
 
-class Regular (GeneralUser):
+class Regular (User):
     __tablename__ = 'regular'
 
     user_id = db.Column(db.Integer, db.ForeignKey(
-        'generaluser.user_id'), primary_key=True)
+        'user.user_id'), primary_key=True)
     gender = db.Column(db.String(50))
     age = db.Column(db.String(50))
     height = db.Column(db.String(50))
@@ -84,7 +82,8 @@ class Regular (GeneralUser):
     faculty = db.Column(db.String(50))
     work = db.Column(db.String(50))
 
-    def __init__(self, gender, age, height, leadership, ethnicity, personality, education, hobby, faculty, work):
+    def __init__(self, type, first_name, last_name, email, username, password, gender, age, height, leadership, ethnicity, personality, education, hobby, faculty, work):
+        super().__init__(type, first_name, last_name, email, username, password)
         self.ethnicity = ethnicity
         self.age = age
         self.height = height
@@ -97,7 +96,7 @@ class Regular (GeneralUser):
         self.work = work
 
     __mapper_args__ = {
-        'polymorphic_identity': 'regular'
+        'polymorphic_identity': 'Regular'
     }
 
 
@@ -147,6 +146,12 @@ class joinGroup(db.Model):
     group_id = db.Column(db.Integer, db.ForeignKey(
         'Grouped.group_id'), primary_key=True)
 
+    def get_id(self):
+        try:
+            return unicode(self.group_id)  # python 2 support
+        except NameError:
+            return str(self.group_id)  # python 3 support
+
 
 class Scores(db.Model):
     __tablename__ = 'userScore'
@@ -155,3 +160,19 @@ class Scores(db.Model):
         'regular.user_id'), primary_key=True)
     feature = db.Column(db.String(20), primary_key=True)
     weight = db.Column(db.DECIMAL(2, 1))
+
+
+class miniGrps(db.Model):
+    __tablename__ = 'miniGrps'
+
+    grping_id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))
+    mbr1 = db.Column(db.String(30))
+    mbr2 = db.Column(db.String(30))
+    # mb3 = db.Column(db.String(30))
+    # mb4 = db.Column(db.String(30))
+    # mb5 = db.Column(db.String(30))
+    criteria = db.Column(db.String(30))
+
+
+    

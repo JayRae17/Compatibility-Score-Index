@@ -1,0 +1,24 @@
+{% extends "sidebar.html" %} {% block div %}
+<div>
+  
+  <div class="page_header">
+    <h2 class="dash_header">{{gp_name.group_name}}</h2>
+    <h4 class="dash_header2">{{grpAmt}} Groups of {{numPersons}}: <button class=" btn recom">Disband Groups</button></h2>
+  </div>
+
+  <div class="row">
+    {% for i in range(1,grpAmt+1) %}
+    <div class="col-4 mb-4">
+      <button class="grp-tile">
+        <div class="py-3">
+          {{'Group ' + i|string()}}
+        </div>
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+
+
+</div>
+
+{% endblock %}

@@ -4,8 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "CompatibiltyScore"
-# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root@localhost/csi"
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://jada:pass@localhost/csi"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root@localhost/csi"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app)

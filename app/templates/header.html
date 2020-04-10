@@ -38,7 +38,7 @@
       {% if current_user.is_authenticated %}
       <li class="nav-item">
         <form method="post" action="{{ url_for('result') }}" class="mt-1 mr-3">
-          <input type="text" class="form-control" placeholder="Search..." />
+          <input type="text" class="form-control search" placeholder="Search..." />
         </form>
       </li>
 
@@ -60,6 +60,26 @@
           >
             Your Profile</a
           >
+
+          {% if current_user.type == "Organizer" %}
+          <a
+            class="drop"
+            href="{{ url_for('createGroup', username=current_user.username) }}"
+            >New Group</a
+          >
+          {% endif %} {% if current_user.type == "Regular" %}
+          <a
+            class="drop"
+            href="{{ url_for('joinAGroup', username=current_user.username) }}"
+            >Join A Group</a
+          >
+          {% endif %}
+
+
+
+
+
+
           <a class=" drop " href="{{ url_for('logout') }}">Log Out</a>
         </div>
       </div>
@@ -73,8 +93,8 @@
       </li>
       <li class="nav-item">
         <a
-          class="btn btn-outline-success-V2 my-2 my-sm-0"
-          href="{{ url_for('register') }}"
+          class="btn btn-outline-success my-2 my-sm-0"
+          href="{{ url_for('registerAs') }}"
           >Register</a
         >
       </li>

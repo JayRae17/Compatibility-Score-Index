@@ -5,26 +5,23 @@
     class="d-inline-block align-top mt-5"
     alt=""
   />
-  {% include 'flash_messages.html' %}
-  <h2 class="mb-5 mt-3">User Registration</h2>
-
-  <form
-    class="card-user-reg mb-5"
-    action="{{ url_for('registerRegular') }}"
-    method="POST"
-  >
+  <h2 class="mb-5 mt-3">User Registration - General</h2>
+  <form class="card-user-reg mb-5" method="POST">
     {{ form.csrf_token }}
     <div class="row my-2">
-      
-      
+      <div class="col title">
+        General
+      </div>
+      <div class="col about-you title">
+        <a href="{{ url_for('aboutUser', typeUser='Regular') }}">About You</a>
+      </div>
     </div>
     <div class="form-body">
       <div class="row mt-5">
         <div class="col">
           <div class="form-group">
-            {{ form.fname.label }} {{ form.fname(class='form-control') }} 
-            
-            {% if form.fname.errors %}
+            {{ form.fname.label }} {{ form.fname(class='form-control') }} {% if
+            form.fname.errors %}
             <ul class="errors">
               {% for error in form.fname.errors %}
               <li>{{ error }}</li>
@@ -35,9 +32,8 @@
         </div>
         <div class="col">
           <div class="form-group">
-            {{ form.lname.label }} {{ form.lname(class='form-control') }} 
-
-            {% if form.lname.errors %}
+            {{ form.lname.label }} {{ form.lname(class='form-control') }} {% if
+            form.lname.errors %}
             <ul class="errors">
               {% for error in form.lname.errors %}
               <li>{{ error }}</li>
@@ -50,9 +46,8 @@
       <div class="row">
         <div class="col">
           <div class="form-group mt-3">
-            {{ form.email.label }} {{ form.email(class='form-control email', placeholder="name@example.com") }} 
-            
-            {% if form.email.errors %}
+            {{ form.email.label }} {{ form.email(class='form-control email',
+            placeholder="name@example.com") }} {% if form.email.errors %}
             <ul class="errors">
               {% for error in form.email.errors %}
               <li>{{ error }}</li>
@@ -62,12 +57,11 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col">
-          <div class="form-group mt-4">
-            {{ form.username.label }} {{ form.username(class='form-control email') }} 
-            
-            {% if form.username.errors %}
+          <div class="form-group">
+            {{ form.username.label }} {{ form.username(class='form-control
+            email') }} {% if form.username.errors %}
             <ul class="errors">
               {% for error in form.username.errors %}
               <li>{{ error }}</li>
@@ -80,9 +74,8 @@
 
       <div class="row my-2">
         <div class="col">
-          <div class="form-group mt-4">
+          <div class="form-group">
             {{ form.password.label }} {{ form.password(class='form-control') }}
-
             {% if form.password.errors %}
             <ul class="errors">
               {% for error in form.password.errors %}
@@ -92,10 +85,8 @@
             {% endif %}
           </div>
         </div>
-
-
         <div class="col">
-          <div class="form-group mt-4">
+          <div class="form-group">
             {{ form.confirmPassword.label }} {{
             form.confirmPassword(class='form-control') }} {% if
             form.confirmPassword.errors %}
@@ -107,11 +98,8 @@
             {% endif %}
           </div>
         </div>
-
       </div>
     </div>
-
-
     <div class="col">
       <div class="row my-2">
         <div class="col mt-5 mb-4">

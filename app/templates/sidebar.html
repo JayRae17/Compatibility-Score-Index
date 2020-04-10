@@ -6,11 +6,7 @@
             <nav id="sidebar">
                 {% if current_user.is_authenticated %}
                 <div class="sidebar-header">
-                    <h4> {{current_user.first_name}} {{current_user.last_name}}
-                        {% if current_user.type == "regular" %}
-                    <a href = "{{ url_for('aboutRegular') }}"> <img src="../static/images/edit (2).png" width="24" height="24" class="d-inline-block align-top ml-5" alt=""/> </a>
-                        {% endif %}
-                </h4>
+                    <h4> {{current_user.first_name}} {{current_user.last_name}}</h4>
                 </div>
 
                 <div>
@@ -53,7 +49,7 @@
 
 
 
-                {% if current_user.type == "organizer" %}
+                {% if current_user.type == "Organizer" %}
 
                     <ul class="list-unstyled components">
                     

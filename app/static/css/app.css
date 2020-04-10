@@ -136,23 +136,16 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(149, 122, 225, 0.5);
 }
 
-.form-control {
-  display: block;
-
-  padding: .4rem .9rem;
-  line-height: 1.5;
-  color: #25282c;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: .25rem;
-  /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
-}
-
 .form-grp{
   width: 30%;
 }
 
+.form-control.search{
+  width: 480px;
+  padding: 5px;
+  padding-left: 10px;
+  margin-top: 0px;
+}
 
 @media screen and (min-width: 992px) {
   .navbar-expand-lg .navbar-nav .nav-link {
@@ -255,6 +248,7 @@ footer h5 {
   box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
   padding: 1rem 0rem 3rem 0rem;
 }
+
 main .btn-outline-success,
 main .btn-outline-success:hover {
   background-color: #0E267A;
@@ -318,7 +312,7 @@ form.card-user-reg.mb-5 {
 }
 
 form.card-user-login.mb-5 {
-  width: 60%;
+  width: 100%;
 }
 
 .form-control.login-user {
@@ -376,6 +370,15 @@ div.register-form form.card-user-reg div.form-group {
 
 .form-control {
   width: 278px;
+  display: block;
+  padding: .4rem .9rem;
+  line-height: 1.5;
+  color: #25282c;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 }
 
 .form-control.email,
@@ -567,6 +570,7 @@ div.register-form form.card-user-reg div.form-group {
   width: 240px;
   height: 240px;
   margin-bottom: 1.5rem;
+  margin-left:1rem;
   background: linear-gradient(90deg, #31D2F7 -143.33%, #FF71AF 254.17%);
   opacity: 0.6;
   border-radius: 6px;
@@ -587,7 +591,7 @@ div.register-form form.card-user-reg div.form-group {
   opacity: 0.8;
 }
 
-.tile .grp_title{
+.grp_title{
   padding-left: 7px;
   padding-right: 7px;
   position: absolute;
@@ -597,6 +601,34 @@ div.register-form form.card-user-reg div.form-group {
   background-color: rgba(255, 255, 255,0.5);
   color: black;
 }
+
+.frndTile{
+  width: 240px;
+  height: 104px;
+  margin-bottom: 1.5rem;
+  margin-left:1rem;
+  /*background: linear-gradient(87.42deg, #2146CB -135.88%, #FFAED2 679.93%);
+  */
+  background-color: #AEBBFF;
+  opacity: 0.6;
+  border-radius: 6px;
+  position: relative;
+  text-align: justify;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 3px solid transparent;
+  line-height: 1;
+  border-radius: 0.25rem;
+  transition:  0.5s; 
+  /*transition: color 0.15s ease-in-out, background 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+*/
+}
+
+.frndTile:hover{
+  background-color: #AEBBFF;
+  opacity: 0.8;
+}
+
 
 .tl{
   padding-top: 1rem;
@@ -655,5 +687,134 @@ div.register-form form.card-user-reg div.form-group {
   color: #0E267A;
   background-color: #fff;
   border: 1px solid #0E267A;
+}
+
+
+/************************************ Results Page *******************************************/
+.lame_header{
+  font-weight: bolder;
+  font-size: 30px;
+  line-height: 30px;
+  letter-spacing: -0.015em;
+  color: rgb(43, 46, 49);
+  margin-top: 3.5rem;
+}
+
+.grp_name{
+  color: #99B0D1;
+  font-weight: 600;
+  margin-left: 2rem;
+}
+
+
+.btn.recom3{
+  color: #fff;
+  background-color: #0E267A;
+  border: 1px solid #0E267A;
+  padding: 2px 25px;
+  float: right;
+}
+
+.btn.recom3:hover{
+  color: #0E267A;
+  background-color: #fff;
+  border: 1px solid #0E267A;
+}
+
+.results{
+  margin-top: 3.5rem;
+}
+
+.card_results{
+  background: #f1f1f1;
+  width: 100%;
+  padding: 1rem 2rem;
+  line-height: 12px;
+  margin-top: 10px;
+}
+
+
+
+/********* Member of Groups *********/
+
+button.member-tile {
+  border: 2px solid #97b0e7;
+  box-sizing: border-box;
+  border-radius: 6px;
+  width: 238px;
+  height: 64px;
+  color: #769ae7;
+  font-weight: 600;
+  background-color: white;
+  margin-left: 1rem;
+}
+
+button.member-tile:hover {
+  cursor: pointer;
+  border:none;
+  background-color: #ebf1ff;
+}
+
+main .mybtn-outline-success {
+  background-color: #0E267A;
+  border: 1px solid #0E267A;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin-left: 55%;
+  margin-top: 2.5rem;
+  padding: 0.5rem 2.5rem;
+  color: #fff;
+  
+}
+
+main .mybtn-outline-success:hover {
+  color: #0E267A;
+  background-color: #fff;
+  border: 1px solid #0E267A;
+}
+
+/********* Modal *********/
+
+h5#PopUpTitle {
+  text-align: center;
+}
+
+.dropdown{
+  text-align: center;
+}
+
+.dropdown>.btn-outline-success.dropdown-toggle{
+  color: #0E267A;
+  background-color: white;
+  border: 2px solid #97b0e7;
+}
+
+
+/********* MiniGrps *********/
+
+button.grp-tile {
+  border: 2px solid #97b0e7;
+  box-sizing: border-box;
+  border-radius: 6px;
+  width: 238px;
+  height: 164px;
+  color: #769ae7;
+  font-weight: 600;
+  background-color: white;
+  margin-left: 1rem;
+  margin-top: 2.5rem;
+}
+
+button.grp-tile:hover {
+  cursor: pointer;
+  border:none;
+  background-color: #ebf1ff;
+}
+
+.dash_header2{
+  font-size: 24px;
+  line-height: 30px;
+  color: rgb(69, 70, 73);
+  margin-top: 3.5rem;
 }
 
