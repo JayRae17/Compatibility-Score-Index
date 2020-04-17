@@ -101,7 +101,7 @@ class Regular (User):
 
 
 class Grouped (db.Model):
-    __tablename__ = 'Grouped'
+    __tablename__ = 'grouped'
 
     group_id = db.Column(db.Integer, primary_key=True)
     group_name = db.Column(db.String(20), unique=True)
@@ -139,12 +139,12 @@ class Grouped (db.Model):
 
 
 class joinGroup(db.Model):
-    __tablename__ = 'joinGroup'
+    __tablename__ = 'joingroup'
 
     user_id = db.Column(db.Integer, db.ForeignKey(
         'regular.user_id'), primary_key=True)
     group_id = db.Column(db.Integer, db.ForeignKey(
-        'Grouped.group_id'), primary_key=True)
+        'grouped.group_id'), primary_key=True)
 
     def get_id(self):
         try:
@@ -154,7 +154,7 @@ class joinGroup(db.Model):
 
 
 class Scores(db.Model):
-    __tablename__ = 'userScore'
+    __tablename__ = 'userscore'
 
     user_id = db.Column(db.Integer, db.ForeignKey(
         'regular.user_id'), primary_key=True)
@@ -162,17 +162,108 @@ class Scores(db.Model):
     weight = db.Column(db.DECIMAL(2, 1))
 
 
-class miniGrps(db.Model):
-    __tablename__ = 'miniGrps'
 
-    grping_id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30))
+class formedGrps2(db.Model):
+    __tablename__ = 'formedgrps2'
+
+    minigrp_id = db.Column(db.Integer, primary_key=True)
+
+    group_id = db.Column(db.Integer, db.ForeignKey('grouped.group_id'))
+
     mbr1 = db.Column(db.String(30))
+
     mbr2 = db.Column(db.String(30))
-    # mb3 = db.Column(db.String(30))
-    # mb4 = db.Column(db.String(30))
-    # mb5 = db.Column(db.String(30))
+
     criteria = db.Column(db.String(30))
+
+    def __init__(self, group_id, mbr1, mbr2, criteria):
+        self.group_id = group_id
+        self.mbr1 = mbr1
+        self.mbr2 = mbr2
+        self.criteria = criteria
+
+
+
+class formedGrps3(db.Model):
+    __tablename__ = 'formedgrps3'
+
+    minigrp_id = db.Column(db.Integer, primary_key=True)
+
+    group_id = db.Column(db.Integer, db.ForeignKey('grouped.group_id'))
+
+    mbr1 = db.Column(db.String(30))
+
+    mbr2 = db.Column(db.String(30))
+
+    mbr3 = db.Column(db.String(30))
+
+    criteria = db.Column(db.String(30))
+
+    def __init__(self, group_id, mbr1, mbr2, mbr3,criteria):
+        self.group_id = group_id
+        self.mbr1 = mbr1
+        self.mbr2 = mbr2
+        self.mbr3 = mbr3
+        self.criteria = criteria
+
+
+
+class formedGrps4(db.Model):
+    __tablename__ = 'formedgrps4'
+
+    minigrp_id = db.Column(db.Integer, primary_key=True)
+
+    group_id = db.Column(db.Integer, db.ForeignKey('grouped.group_id'))
+
+    mbr1 = db.Column(db.String(30))
+
+    mbr2 = db.Column(db.String(30))
+
+    mbr3 = db.Column(db.String(30))
+
+    mbr4 = db.Column(db.String(30))
+
+    criteria = db.Column(db.String(30))
+
+    def __init__(self, group_id, mbr1, mbr2, mbr3, mbr4, criteria):
+        self.group_id = group_id
+        self.mbr1 = mbr1
+        self.mbr2 = mbr2
+        self.mbr3 = mbr3
+        self.mbr4 = mbr4
+        self.criteria = criteria
+
+
+class formedGrps5(db.Model):
+    __tablename__ = 'formedgrps5'
+
+    minigrp_id = db.Column(db.Integer, primary_key=True)
+
+    group_id = db.Column(db.Integer, db.ForeignKey('grouped.group_id'))
+
+    mbr1 = db.Column(db.String(30))
+
+    mbr2 = db.Column(db.String(30))
+
+    mbr3 = db.Column(db.String(30))
+
+    mbr4 = db.Column(db.String(30))
+
+    mbr5 = db.Column(db.String(30))
+
+    criteria = db.Column(db.String(30))
+
+    def __init__(self, group_id, mbr1, mbr2, mbr3, mbr4, mbr5, criteria):
+        self.group_id = group_id
+        self.mbr1 = mbr1
+        self.mbr2 = mbr2
+        self.mbr3 = mbr3
+        self.mbr4 = mbr4
+        self.mbr5 = mbr5
+        self.criteria = criteria
+
+
+
 
 
     

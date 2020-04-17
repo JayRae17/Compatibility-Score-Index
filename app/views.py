@@ -5,12 +5,13 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 import math
+import random
 from app import app, db, login_manager
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from app.forms import LoginForm, SignUp, AboutYou, Groupings, newGroup, joinNewGroup
 from werkzeug.security import check_password_hash
-from app.models import User, Regular, Organizer, Grouped, joinGroup, Scores
+from app.models import User, Regular, Organizer, Grouped, joinGroup, Scores, formedGrps2,formedGrps3,formedGrps4,formedGrps5
 ###
 # Routing for your application.
 ###
@@ -61,6 +62,9 @@ def logout():
 
 
 
+
+
+
 @app.route('/registerAs', methods=["GET", "POST"])
 def registerAs():
     """Render the website's register page."""
@@ -71,6 +75,10 @@ def registerAs():
         elif request.form.get('Organizer') == 'Organizer':
             return redirect(url_for('register', typeUser="Organizer"))
     return render_template('registerAs.html')
+
+
+
+
 
 
 @app.route('/register/<typeUser>', methods=["GET", "POST"])
@@ -114,6 +122,9 @@ def register(typeUser):
     return render_template("signup.html", form=form)
 
 
+
+
+
 @login_required
 @app.route('/<username>/createGroup',  methods=['GET', 'POST'])
 def createGroup(username):
@@ -136,6 +147,9 @@ def createGroup(username):
             # Redirects to Profile Page
             return redirect(url_for('dashboard', username=current_user.username))
     return render_template('createGroup.html', form=form)
+
+
+
 
 
 @login_required
@@ -168,6 +182,10 @@ def joinAGroup(username):
     return render_template('joinGroup.html', form=form)
 
 
+
+
+
+
 @login_required
 @app.route('/members/<gp_id>',  methods=['GET', 'POST'])
 def members(gp_id):
@@ -176,30 +194,111 @@ def members(gp_id):
     if current_user.type == "Organizer":
         getMembers = (db.session.query(joinGroup, Regular, User).join(joinGroup).filter_by(group_id=gp_id).all())
         """Render the website's  page."""
-        mbrsCopy = getMembers
-
+        
         form = Groupings()
         if request.method == "POST" and form.validate_on_submit():
-            
+
             grpBy = form.grpBy.data
             numPersons = form.numPersons.data
 
-            # THIS ONLY ALLOWS FOR THE GROUPS TO SHOW
-            length = len(mbrsCopy)
+            # CALCULATES THE AMOUNT OF GROUPS BASED ON NUMBER ENTERED
+            length = len(getMembers)
             grpAmt = length/int(numPersons)
-            grpAmt = math.ceil(grpAmt)
+            grpAmt = round(grpAmt)
 
+            # SAVES ALL THE NAMES IN THE SPECIFIC SET TO 'MBRNAMES'
+            mbrNames = (db.session.query(Regular.first_name,Regular.last_name).join(joinGroup, Regular.user_id == joinGroup.user_id).filter_by(group_id=gp_id).all())
+
+
+            # MY LAST RESORT :(
+            #Creates a regular list of the members (both first and last name)
+            lst = []
+            for i in mbrNames:
+                fname = str(i[0])
+                lname = str(i[1])
+                lst.append(fname+"" + lname)
+
+            #Tryna find a way to save the different sized groups to the database
+
+            if int(numPersons) == 2: #if its groups of 2, save it to database table for groups of 2
+                for i in range(grpAmt):
+                    mini = formedGrps2(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], criteria=str(grpBy))
+                    lst.pop()
+                    lst.pop()
+                    db.session.add(mini)
+                    db.session.commit()
+                    # if len(lst) == 1:
+                    #     mini = formedGrps2(group_id= gp_id, mbr1=lst[0], mbr2="", criteria=str(grpBy))
+                    # else:
+                    #     break
+
+
+            if int(numPersons) == 3: #if its groups of 3, save it to database table for groups of 3
+                for i in range(grpAmt):
+                    mini = formedGrps3(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], mbr3=lst[2], criteria=str(grpBy))
+                    lst.pop()
+                    lst.pop()
+                    lst.pop()
+                    db.session.add(mini)
+                    db.session.commit()
+                    # if len(lst) == 2:
+                    #     mini = formedGrps3(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], mbr3="", criteria=str(grpBy))
+                    # if len(lst) == 1:
+                    #     mini = formedGrps3(group_id= gp_id, mbr1=lst[0], mbr2="", mbr3="", criteria=str(grpBy))
+                    # else:
+                    #     break
+
+            if int(numPersons) == 4: #if its groups of 4, save it to database table for groups of 4
+                for i in range(grpAmt):
+                    mini = formedGrps4(group_id= gp_id, mbr1=lst[0], mbr2=lst[1],mbr3=lst[2],mbr4=lst[3],criteria=str(grpBy))
+                    lst.pop()
+                    lst.pop()
+                    lst.pop()
+                    lst.pop()
+                    db.session.add(mini)
+                    db.session.commit()
+                    # if len(lst) == 3:
+                    #     mini = formedGrps4(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], mbr3=lst[1], mbr4="", criteria=str(grpBy))
+                    # if len(lst) == 2:
+                    #     mini = formedGrps4(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], mbr3="", mbr4="", criteria=str(grpBy))
+                    # if len(lst) == 1:
+                    #     mini = formedGrps4(group_id= gp_id, mbr1=lst[0], mbr2="", mbr3="", mbr4="", criteria=str(grpBy))
+                    # else:
+                    #     break
+            
+            if int(numPersons) == 5: #if its groups of 5 save it to database table for groups of 5
+                for i in range(grpAmt):
+                    mini = formedGrps2(group_id= gp_id, mbr1=lst[0], mbr2=lst[1],mbr3=lst[2],mbr4=lst[3], mbr5=lst[4],criteria=str(grpBy))
+                    lst.pop()
+                    lst.pop()
+                    lst.pop()
+                    lst.pop()
+                    lst.pop()
+                    db.session.add(mini)
+                    db.session.commit()
+
+
+
+    
             return redirect(url_for('miniGrps', gp_id = gp_id, grpAmt = grpAmt, numPersons = numPersons))
 
     return render_template('members.html', getMembers=getMembers, gp_name=gp_name, gp_id = gp_id, form = form)
         
-        
+   
+
+
+
 
 @login_required
 @app.route('/minigroups/<gp_id>/<numPersons>/<grpAmt>',  methods=['GET', 'POST'])
+#CAN'T PASS MORE THAN ONE ARGUMENT IN ROUTE
+
 def miniGrps(gp_id,numPersons,grpAmt):
     gp_name = Grouped.query.filter_by(group_id=gp_id).first()
+    
     return render_template('miniGrps.html', gp_name=gp_name, numPersons=numPersons, grpAmt= int(grpAmt))
+
+
 
 
 
