@@ -2,16 +2,16 @@
 <div>
   
   <div class="page_header">
-    <h2 class="dash_header">{{gp_name.group_name}}</h2>
-    <h4 class="dash_header2">{{grpAmt}} Groups of {{numPersons}}: <button class=" btn recom">Disband Groups</button></h2>
+    <h2 class="dash_header">{{gp_name.group_name}}</h2> <span> <img src="/static/images/transfer.png" class="transfer grow" data-toggle="modal" data-target="#myModal0"></span>
+    <h4 class="dash_header2">{{groups|length}} Groups of {{numPersons}}: <button class=" btn recom">Disband Groups</button></h2>
   </div>
 
   <div class="row">
-    {% for i in range(1,grpAmt+1) %}
+    {% for item in groups %}
     <div class="col-4 mb-4">
       <button class="grp-tile">
         <div class="py-3">
-          {{'Group ' + i|string()}}
+          {{'Group ' + loop.index|string()}}
         </div>
       </button>
     </div>
@@ -26,9 +26,75 @@
    
     {{mbrNames}} {% endif %}
     
+<!-- Modal -->
+<div class="modal fade" id="myModal0" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="PopUpTitle">Switch Group Members</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ url_for('miniGrps',gp_id = gp_id,numPersons = numPersons) }}" method="post">
+        {{ form2.csrf_token }}
+      <div class="modal-body">
+        <div class="modal-form">
+          <h5 class="modal-title mb-2" id="PopUpTitle2">Group Number of group to transfer from:</h5> 
+          {{ form2.grpNum(class='form-control-modal') }}
+
+          <h5 class="modal-title mb-2" id="PopUpTitle2">Group Number of group to transfer to:</h5> 
+          {{ form2.grpNum2(class='form-control-modal') }}
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-success btn-next my-2 my-sm-0">Next</button>
+      </div>
+      </form>
+      </div>
+    </div>
   </div>
 
 
+  <!-- Modal 2 -->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="PopUpTitle">Choose the Member to Transfer:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ url_for('miniGrps',gp_id = gp_id,numPersons = numPersons) }}" method="post">
+        {{ form2.csrf_token }}
+      <div class="modal-body centered">
+         
+
+            <input type="submit" value="" name="" class="member-tile2"/>
+            <input type="submit" value="" name="" class="member-tile2"/>
+            <input type="submit" value="" name="" class="member-tile2"/>
+            <input type="submit" value="" name="" class="member-tile2"/>
+      
+        </div>
+      
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-prev">Prev</button>
+          <button type="button" class="btn btn-outline-success btn-next my-2 my-sm-0">Submit</button>
+      </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+      
 </div>
+
+
+
 
 {% endblock %}

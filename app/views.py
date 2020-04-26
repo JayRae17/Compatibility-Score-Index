@@ -9,7 +9,7 @@ import random
 from app import app, db, login_manager
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
-from app.forms import LoginForm, SignUp, AboutYou, Groupings, newGroup, joinNewGroup
+from app.forms import LoginForm, SignUp, AboutYou, Groupings, newGroup, joinNewGroup, TranferGrp, Criteria
 from werkzeug.security import check_password_hash
 from app.models import User, Regular, Organizer, Grouped, joinGroup, Scores, formedGrps2,formedGrps3,formedGrps4,formedGrps5
 ###
@@ -185,13 +185,15 @@ def joinAGroup(username):
 
 
 
-
 @login_required
 @app.route('/members/<gp_id>',  methods=['GET', 'POST'])
 def members(gp_id):
     gp_name = Grouped.query.filter_by(group_id=gp_id).first()
 
     if current_user.type == "Organizer":
+        # groups = db.session.query(formedGrps2).filter_by(group_id=gp_id).all()
+        # if groups :
+
         getMembers = (db.session.query(joinGroup, Regular, User).join(joinGroup).filter_by(group_id=gp_id).all())
         """Render the website's  page."""
         
@@ -214,17 +216,18 @@ def members(gp_id):
             #Creates a regular list of the members (both first and last name)
             lst = []
             for i in mbrNames:
-                fname = str(i[0])
-                lname = str(i[1])
+                a = 0
+                fname = str(i[a])
+                lname = str(i[a+1])
                 lst.append(fname+"" + lname)
+                a+=2
 
             #Tryna find a way to save the different sized groups to the database
 
             if int(numPersons) == 2: #if its groups of 2, save it to database table for groups of 2
                 for i in range(grpAmt):
                     mini = formedGrps2(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], criteria=str(grpBy))
-                    lst.pop()
-                    lst.pop()
+                    lst = lst[2:] 
                     db.session.add(mini)
                     db.session.commit()
                     # if len(lst) == 1:
@@ -236,9 +239,7 @@ def members(gp_id):
             if int(numPersons) == 3: #if its groups of 3, save it to database table for groups of 3
                 for i in range(grpAmt):
                     mini = formedGrps3(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], mbr3=lst[2], criteria=str(grpBy))
-                    lst.pop()
-                    lst.pop()
-                    lst.pop()
+                    lst = lst[3:] 
                     db.session.add(mini)
                     db.session.commit()
                     # if len(lst) == 2:
@@ -251,10 +252,7 @@ def members(gp_id):
             if int(numPersons) == 4: #if its groups of 4, save it to database table for groups of 4
                 for i in range(grpAmt):
                     mini = formedGrps4(group_id= gp_id, mbr1=lst[0], mbr2=lst[1],mbr3=lst[2],mbr4=lst[3],criteria=str(grpBy))
-                    lst.pop()
-                    lst.pop()
-                    lst.pop()
-                    lst.pop()
+                    lst = lst[4:] 
                     db.session.add(mini)
                     db.session.commit()
                     # if len(lst) == 3:
@@ -268,19 +266,13 @@ def members(gp_id):
             
             if int(numPersons) == 5: #if its groups of 5 save it to database table for groups of 5
                 for i in range(grpAmt):
-                    mini = formedGrps2(group_id= gp_id, mbr1=lst[0], mbr2=lst[1],mbr3=lst[2],mbr4=lst[3], mbr5=lst[4],criteria=str(grpBy))
-                    lst.pop()
-                    lst.pop()
-                    lst.pop()
-                    lst.pop()
-                    lst.pop()
+                    mini = formedGrps5(group_id= gp_id, mbr1=lst[0], mbr2=lst[1],mbr3=lst[2],mbr4=lst[3], mbr5=lst[4],criteria=str(grpBy))
+                    lst = lst[5:] 
                     db.session.add(mini)
                     db.session.commit()
 
 
-
-    
-            return redirect(url_for('miniGrps', gp_id = gp_id, grpAmt = grpAmt, numPersons = numPersons))
+            return redirect(url_for('miniGrps', gp_id = gp_id, numPersons = numPersons))
 
     return render_template('members.html', getMembers=getMembers, gp_name=gp_name, gp_id = gp_id, form = form)
         
@@ -290,15 +282,42 @@ def members(gp_id):
 
 
 @login_required
-@app.route('/minigroups/<gp_id>/<numPersons>/<grpAmt>',  methods=['GET', 'POST'])
-#CAN'T PASS MORE THAN ONE ARGUMENT IN ROUTE
+@app.route('/minigroups/<gp_id>/<numPersons>/',  methods=['GET', 'POST'])
 
-def miniGrps(gp_id,numPersons,grpAmt):
+def miniGrps(gp_id,numPersons):
     gp_name = Grouped.query.filter_by(group_id=gp_id).first()
     
-    return render_template('miniGrps.html', gp_name=gp_name, numPersons=numPersons, grpAmt= int(grpAmt))
+    if int(numPersons) == 2:
+        groups = db.session.query(formedGrps2).filter_by(group_id=gp_id).all()
+    
+    if int(numPersons) == 3:
+        groups = db.session.query(formedGrps3).filter_by(group_id=gp_id).all()
+    
+    if int(numPersons) == 4:
+        groups = db.session.query(formedGrps4).filter_by(group_id=gp_id).all()
+    
+    if int(numPersons) == 5:
+        groups = db.session.query(formedGrps5).filter_by(group_id=gp_id).all()
+    
+
+    form2 = TranferGrp()
+    if request.method == "POST" and form2.validate_on_submit():
+        grpNum = form2.grpNum.data 
+        grpNum2 = form2.grpNum2.data
+        return redirect
+    return render_template('miniGrps.html', gp_id = gp_id, gp_name=gp_name, numPersons=numPersons, groups= groups, form2 = form2)
 
 
+
+
+@app.route('/recommend/<username>')
+@login_required
+def recommend(username):
+    """Render the website's recommended matches page."""
+    form = Criteria()
+    getGroups = Grouped.query.join(joinGroup).filter_by(user_id=current_user.user_id).all()
+
+    return render_template('recomnd.html', form = form)
 
 
 
@@ -320,21 +339,29 @@ def dashboard(username):
 @app.route('/about/<typeUser>', methods=["GET", "POST"])
 def aboutUser(typeUser):
     # How am I going to pass the above information
-    form = SignUp()
+    form = AboutYou()
     if request.method == "POST" and form.validate_on_submit():
-        user = Regular(type="regular", first_name=request.form['fname'], last_name=request.form['lname'], email=request.form['email'], username=request.form['username'], password=request.form['password'], gender=request.form['sex'], age=request.form['age'], height=request.form[
-                       'height'], leadership=request.form['leadership'], ethnicity=request.form['ethnicity'], personality=request.form['personality'], education=request.form['education'], hobby=request.form['hobby'], faculty=request.form['faculty'], work=request.form['work'])
+        gender=request.form['sex']
+        age=request.form['age']
+        height=request.form['height'] 
+        leadership=request.form['leadership'] 
+        ethnicity=request.form['ethnicity']
+        personality=request.form['personality'] 
+        education=request.form['education']
+        hobby=request.form['hobby'] 
+        work=request.form['work']
 
-        db.session.add(user)
+        db.session.query(Regular).filter(Regular.user_id == current_user.user_id).update({Regular.gender: gender, Regular.age: age, Regular.height: height, Regular.leadership: leadership, Regular.ethnicity: ethnicity, Regular.personality: personality, Regular.education: education, Regular.hobby: hobby, Regular.work: work}, synchronize_session=False)
+
 
         # Adds a regular user info to the database
         db.session.commit()
 
         # Success Message Appears
-        flash('You have successfully registered')
+        flash('Feautures saved!','success')
 
         # Redirect User to Main Page
-        return redirect(url_for("home"))
+        return redirect(url_for('dashboard', username=current_user.username))
 
         # if form entry is invalid, redirected to the same page to fill in required details
     return render_template('about_you.html', form=form)

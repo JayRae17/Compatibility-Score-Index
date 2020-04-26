@@ -6,7 +6,7 @@
 
     {% if current_user.type == "Regular"%}
         <h4 class = "grp_header">My Groups 
-            <button class=" btn recom">Recommend Matches</button>
+            <a href = "{{ url_for('recommend', username=current_user.username) }}" class=" btn recom">Recommend Matches</a>
         </h4>
 
     {% endif %} 
@@ -70,7 +70,7 @@
             {% if current_user.type == "Regular" %}
             <a href="{{ url_for('joinAGroup', username=current_user.username) }}">
             <button class = "tile add">
-                <img src="../static/images/plus.png" width="50" height="50" class = "img-add" />
+                <img src="../static/images/plus.png" width="50" height="50" class = "img-add grow" />
             </button>
             </a>
             {% endif %}
@@ -84,13 +84,15 @@
             You Currently Have No Friends
         </div>
 
-         <div class = "row"> 
-        <!-- <div class="col-4">
-            <button class = "frndTile">
-                <div> 
-                    <p> </p> 
-                </div>
-            </button>
+        <!-- <div class = "row"> 
+            <div class="col-4">
+                <button class = "frndTile">
+                    <div class = "grp_title py-3">
+                        elllo
+                    </div>
+   
+                </button>
+            </div>
         </div> -->
 
         <button class=" btn recom2">All</button>

@@ -1,0 +1,35 @@
+{% extends "sidebar.html" %} {% block div %}
+    <div class = "page_header">
+        <h2 class = "dash_header darken">Recommended Matches</h2>
+        <h3 class ="dash_header2"> Top 9 Matches</h3> 
+        {% include 'flash_messages.html' %}
+    </div>
+
+    <div class="dropdown">
+        {{ form.crit(class='btn btn-outline-success my-2 my-sm-0 dropdown-toggle mb-3') }}
+            
+    </div>
+    
+    <!-- RECOMMEND TILE LAYOUT -->
+        <div class = "row pl-5 pr-4"> 
+            <div class="col-4">
+                <button class = "rmndTile">
+                    <span class = "delete_" aria-hidden="true">&times;</span>
+
+                    <span class = "percentage">86%</span>
+
+                    <div class = "grp_title py-3">
+                        elllo
+                    </div>
+   
+                </button>
+            </div>
+        </div>
+
+
+        
+        
+
+
+ 
+{% endblock %}

@@ -2,12 +2,12 @@
 <div class="register-form center-block less">
   {% if current_user.is_authenticated %}
   <div class = "page_header">
-    <h2 class = "dash_header">Who is {{current_user.username}}?</h2>
+    <h2 class = "dash_header darken">Tell Us About Yourself</h2>
    
 </div>
   <form
     class="card-user-reg mt-4 mb-0"
-    action="{{ url_for('aboutRegular') }}"
+    action="{{ url_for('aboutUser', typeUser = current_user.type) }}"
     method="POST"
   >
     {{ form.csrf_token }}
@@ -53,10 +53,14 @@
           </div>
         </div>
       </div>
+      
     </div>
+
+
+
     <div class="ques-container mt-4">
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <div class="form-group mt-3">
             {{ form.ethnicity.label }} {{ form.ethnicity(class='form-control
             ques') }} {% if form.ethnicity.errors %}
@@ -68,9 +72,8 @@
             {% endif %}
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
+
+        <div class="col-6">
           <div class="form-group mt-3">
             {{ form.personality.label }} {{ form.personality(class='form-control
             ques') }} {% if form.personality.errors %}
@@ -83,8 +86,9 @@
           </div>
         </div>
       </div>
+
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <div class="form-group mt-3">
             {{ form.work.label }} {{ form.work(class='form-control ques') }} {%
             if form.work.errors %}
@@ -96,9 +100,8 @@
             {% endif %}
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
+      
+        <div class="col-6">
           <div class="form-group mt-3">
             {{ form.leadership.label }} {{ form.leadership(class='form-control
             ques') }} {% if form.leadership.errors %}
@@ -111,8 +114,10 @@
           </div>
         </div>
       </div>
+
+
       <div class="row">
-        <div class="col">
+        <div class="col-6">
           <div class="form-group mt-3">
             {{ form.education.label }} {{ form.education(class='form-control
             ques') }} {% if form.education.errors %}
@@ -124,23 +129,9 @@
             {% endif %}
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="form-group mt-3">
-            {{ form.faculty.label }} {{ form.faculty(class='form-control ques')
-            }} {% if form.faculty.errors %}
-            <ul class="errors">
-              {% for error in form.faculty.errors %}
-              <li>Please select an option from the dropdown.</li>
-              {% endfor %}
-            </ul>
-            {% endif %}
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
+      
+     
+        <div class="col-6">
           <div class="form-group mt-3">
             {{ form.hobby.label }} {{ form.hobby(class='form-control ques') }}
             {% if form.hobby.errors %}
@@ -153,6 +144,7 @@
           </div>
         </div>
       </div>
+
       <div class="row my-2">
         <div class="col mt-5 mb-4">
           {{ form.submit(class='btn btn-outline-success my-2 my-sm-0') }}

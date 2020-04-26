@@ -91,6 +91,11 @@ body {
   letter-spacing: -0.015em;
 }
 
+.mid{
+  margin-left:14rem;
+}
+
+
 .btn-outline-success,
 .btn-outline-success:hover {
   border: 1px solid #fff;
@@ -233,6 +238,33 @@ footer h5 {
 }
 
 
+
+/********************************************* HOME *************************************************/
+.slide{
+  height: 580px;
+}
+
+
+.slide-info{
+  background: linear-gradient(316.23deg, #0BF0FF -47.49%, #D841D2 147.67%);
+  text-align: center;
+  color: #fff;
+}
+
+
+.col-8.mine{
+  padding-left: 0px;
+  padding-right: 0px;
+  max-width: 63.666667%;
+}
+
+.col-5.slide-info {
+  max-width: 35.666667%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+
 /****************************** User Registration Form Region  **************************************/
 .register-form.center-block {
   text-align: center;
@@ -245,7 +277,9 @@ footer h5 {
 
 .card-main {
   background: hsl(0, 0%, 95%);
-  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  /* box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25); */
+  border-radius: 1rem;
+  background: #e7e7f9;
   padding: 1rem 0rem 3rem 0rem;
 }
 
@@ -289,20 +323,23 @@ main .btn-outline-success.focus,
 
 
 form.card-user-login {
-  background: #f1f1f1;
-  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  background: #e7e7f9;
+  /* box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25); */
   width: 992px;
   margin: 0 auto;
+  border-radius: 1rem;
   padding-left: 2rem ;
   padding-bottom: 2rem;
 }
 
 form.card-user-reg.mb-5 {
-  background: #f1f1f1;
-  box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25);
+  background: #e7e7f9;
+  /* box-shadow: 3px 0px 5px rgba(182, 182, 182, 0.25); */
   width: 992px;
-  padding-left: 4rem;
   margin: 0 auto;
+  border-radius: 1rem;
+  padding-left: 2rem ;
+ 
 }
 
 
@@ -312,7 +349,7 @@ form.card-user-reg.mb-5 {
 }
 
 form.card-user-login.mb-5 {
-  width: 100%;
+  width: 70%;
 }
 
 .form-control.login-user {
@@ -353,6 +390,11 @@ form.card-user-reg div.general a {
   font-weight: normal;
   font-size: 16px;
 }
+/* 
+input#submit {
+  margin-left: 88%;
+}
+ */
 
 div.register-form form.card-user-reg div {
   margin: 0 auto;
@@ -378,6 +420,7 @@ div.register-form form.card-user-reg div.form-group {
   background-clip: padding-box;
   border: 1px solid #ced4da;
   border-radius: .25rem;
+  resize:none;
   /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
 }
 
@@ -409,12 +452,13 @@ div.register-form form.card-user-reg div.form-group {
 }
 
 .ques-container select.ques {
-  width: 447px;
+  width: 299px;
+  margin-bottom: 1rem;
   background: linear-gradient(90deg, rgb(161, 238, 255) -313.56%, rgb(255, 201, 225) 398.31%);
 }
 
 .ques-container {
-  width: 500px;
+  width: 100%;
 }
 
 
@@ -441,6 +485,12 @@ div.register-form form.card-user-reg div.form-group {
   margin-left: 0px;
 }
 
+@media (min-width: 1200px){
+  .container {
+    max-width: 90%;
+  }
+}
+
 .main{
   width: 100%;
   margin-top: 3rem;
@@ -458,6 +508,10 @@ div.register-form form.card-user-reg div.form-group {
   align-items: stretch;
   width: 320px;
   
+}
+
+.col-4.sbar{
+  max-width: 29.333333%;
 }
 
 #sidebar {
@@ -502,19 +556,21 @@ div.register-form form.card-user-reg div.form-group {
 
 .rec-button{
   border: none;
-  border-radius: 0rem;
-  background-color: #fff;
+  border-radius: 0.5rem;
+  background: linear-gradient(90deg, #31D2F7 -313.56%, #FFAED2 398.31%);
+  color:#fff;
+  opacity: 0.8;
   text-align: left;
   box-sizing: border-box;
-  margin-right: 0rem;
+  margin-right: 5rem;
+  margin-left: 2.5rem;
   margin-top: 1rem;
   padding: 0.7rem 2.5rem;
-  color: rgba(0, 0, 0, 0.8);
   font-weight: 600;
-  width: 80%;
+  width: 76%;
 }
 
-
+/* 
 .num-button{
   border: none;
   border-radius: 0rem;
@@ -527,12 +583,13 @@ div.register-form form.card-user-reg div.form-group {
   width: 18%;
   display: inline-block;
   transition: 0.7s;
-}
+} */
 
 
-.num-button:hover{
+.rec-button:hover{
   background: linear-gradient(90deg, #31D2F7 -313.56%, #FFAED2 398.31%);
-  opacity: 0.5;
+  color:#fff;
+  opacity: 1;
 }
 
 .socialmd{
@@ -552,6 +609,9 @@ div.register-form form.card-user-reg div.form-group {
   }
 }
 
+.content{
+  margin-left: 3rem;
+}
 
 /******************************** FOR DASHBOARD ********************************/
 
@@ -604,12 +664,11 @@ div.register-form form.card-user-reg div.form-group {
 
 .frndTile{
   width: 240px;
-  height: 104px;
+  height: 124px;
   margin-bottom: 1.5rem;
   margin-left:1rem;
-  /*background: linear-gradient(87.42deg, #2146CB -135.88%, #FFAED2 679.93%);
-  */
-  background-color: #AEBBFF;
+  background-image: url("slideshow1.jpg");
+    /* background-color: #AEBBFF; */
   opacity: 0.6;
   border-radius: 6px;
   position: relative;
@@ -689,6 +748,14 @@ div.register-form form.card-user-reg div.form-group {
   border: 1px solid #0E267A;
 }
 
+.form-group.row{
+  padding: 0rem 6rem;
+  /* text-align: center; */
+  letter-spacing: -0.015em;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: normal;
+  font-size: 16px;
+}
 
 /************************************ Results Page *******************************************/
 .lame_header{
@@ -735,7 +802,7 @@ div.register-form form.card-user-reg div.form-group {
 
 
 
-/********* Member of Groups *********/
+/**************************************Member of Groups ***********************************/
 
 button.member-tile {
   border: 2px solid #97b0e7;
@@ -773,7 +840,7 @@ main .mybtn-outline-success:hover {
   border: 1px solid #0E267A;
 }
 
-/********* Modal *********/
+/******************************************* Modal ************************************************/
 
 h5#PopUpTitle {
   text-align: center;
@@ -787,10 +854,12 @@ h5#PopUpTitle {
   color: #0E267A;
   background-color: white;
   border: 2px solid #97b0e7;
+  margin-left: 80%;
+  width: 14rem;
 }
 
 
-/********* MiniGrps *********/
+/******************************************* MiniGrps *****************************************/
 
 button.grp-tile {
   border: 2px solid #97b0e7;
@@ -815,6 +884,105 @@ button.grp-tile:hover {
   font-size: 24px;
   line-height: 30px;
   color: rgb(69, 70, 73);
-  margin-top: 3.5rem;
+  margin-top: 1.5rem;
 }
 
+img.transfer {
+  height: 3rem;
+  /* float: right; */
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.grow { 
+  transition: all .2s ease-in-out; 
+}
+.grow:hover { 
+  transform: scale(1.2); 
+}
+
+.modal-form{
+  text-align: center;
+}
+
+.form-control-modal {
+  width: 30%;
+  padding: .4rem .9rem;
+  line-height: 1.5;
+  color: #25282c;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  /* transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
+}
+
+#PopUpTitle2{
+  text-align: center;
+  font-size: 18px;
+}
+
+.member-tile2{
+  border: 2px solid #97b0e7;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 40%;
+    height: 3rem;
+    color: #769ae7;
+    font-weight: 600;
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+.centered{
+  text-align: center;
+}
+
+.member-tile2:hover {
+  cursor: pointer;
+  border:none;
+  background-color: #ebf1ff;
+}
+
+
+/************************************* RECOMMENDED MATCHES *************************************/
+.darken{
+  color:#4d565e;
+}
+
+.rmndTile{
+  width: 200px;
+  height: 200px;
+  margin-bottom: 1.5rem;
+  margin-left: 1rem;
+  margin-top: 2rem;
+  background: linear-gradient(88.74deg, #31D2F7 -173.8%, #FF71AF 271.63%);
+  opacity: 0.6;
+  border-radius: 6px;
+  position: relative;
+  text-align: justify;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 3px solid transparent;
+  line-height: 1;
+  border-radius: 0.25rem;
+  transition: 0.5s;
+  
+}
+
+.delete_{
+  font-size: 2rem;
+  font-weight: thin; 
+  line-height: 1;
+  color: #000;
+  /* text-shadow: 0 1px 0 #fff; */
+  position: absolute;
+  right: 10px;
+  top: 2px;
+    
+}
+
+.percentage{
+  position: absolute;
+  left: 10px;
+  top: 9px;
+}

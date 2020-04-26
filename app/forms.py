@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, PasswordField, SelectField, SubmitField
-from wtforms.validators import InputRequired, Email, DataRequired, Length, EqualTo
+from wtforms import StringField, TextAreaField, PasswordField, SelectField,IntegerField, SubmitField
+from wtforms.validators import InputRequired, Email, DataRequired, Length, EqualTo, NumberRange
 
 
 class LoginForm(FlaskForm):
@@ -54,7 +54,7 @@ class AboutYou(FlaskForm):
     work = SelectField('To which work area do you belong?', choices=[(0, 'Select an option'), ('Business', 'Business'), ('Education', 'Education'), (
         'Science', 'Science'), ('Technology', 'Technology'), ('Construction', 'Construction'), ('Communication', 'Communication'), ('Law', 'Law')])
 
-    leadership = SelectField('How would you describe your leadership style?', choices=[(0, 'Select an option'), (
+    leadership = SelectField('What is your leadership style?', choices=[(0, 'Select an option'), (
         'Democratic', 'Democratic'), ('Autocratic', 'Autocratic'), ('Laissez-Faire', 'Laissez-Faire')])
 
     education = SelectField('Which is your level of education?', choices=[(0, 'Select an option'), ('Bachelors', 'Bachelors'), (
@@ -63,19 +63,15 @@ class AboutYou(FlaskForm):
     hobby = SelectField('What is your favourite hobby?', choices=[(0, 'Select an option'), ('Sports', 'Sports'), (
         'Music', 'Music'), ('Exercising', 'Exercising'), ('Shopping', 'Shopping'), ('Dancing', 'Dancing'), ('Watching TV', 'Watching TV'), ('Reading and Writing', 'Reading and Writing'), ('Arts', 'Arts')])
 
-    faculty = SelectField('To which faculty do you belong?', choices=[(0, 'Select an option'), ('Science and Technology', 'Science and Technology'), (
-        'Medical Sciences', 'Medical Sciences'), ('Social Sciences', 'Social Sciences'), ('Humanities', 'Humanities'), ('Engineering', 'Engineering'), ('Law', 'Law')])
 
     submit = SubmitField('Submit')
 
 
 class newGroup(FlaskForm):
-    group_name = StringField('Group Name:', validators=[DataRequired(), Length(
+    group_name = StringField('Name: &nbsp; &nbsp;', validators=[DataRequired(), Length(
         min=4, max=30, message=('Name should be Characters Only'))])
 
-    purpose = StringField('Purpose:', validators=[DataRequired(), Length(
-        min=4, max=30, message=('Name should be Characters Only'))])
-
+    
     purpose = TextAreaField('Purpose:', validators= [Length(max=200)])
 
     submit = SubmitField('Add New Group')
@@ -89,9 +85,27 @@ class joinNewGroup(FlaskForm):
 
 
 class Groupings(FlaskForm):
-    grpBy = SelectField('Criteria', choices=[(0, 'Select an option'), ('compatible', 'Compatible'), ('uncompatible', 'Uncompatible')])
+    grpBy = SelectField('Criteria', choices=[(0, 'Select an option'), ('compatible', 'Compatible'), ('incompatible', 'Incompatible')])
 
     numPersons = SelectField('Amount', choices=[(0, 'Select an option'), ('2', 'two'), ('3', 'three'), ('4', 'four'), ('5', 'five')])
     
     submit = SubmitField('Create')
 
+def intcheck(self, field):
+    try:
+        val = int(field.data)
+    except ValueError:
+        raise ValidationError('Must be a number')
+
+
+
+class TranferGrp(FlaskForm):
+    # NOT WOKRING :(
+    grpNum = IntegerField('First Group Number', validators=[DataRequired(), intcheck])
+    grpNum2 = IntegerField('Second Group Number', validators=[DataRequired(), intcheck])
+    
+    submit = SubmitField('Next')
+
+
+class Criteria(FlaskForm):
+    crit = SelectField('Criteria', choices=[ ('compatible', 'Compatible'), ('incompatible', 'Incompatible')])

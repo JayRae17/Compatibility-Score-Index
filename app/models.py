@@ -79,10 +79,9 @@ class Regular (User):
     personality = db.Column(db.String(30))
     education = db.Column(db.String(50))
     hobby = db.Column(db.String(50))
-    faculty = db.Column(db.String(50))
     work = db.Column(db.String(50))
 
-    def __init__(self, type, first_name, last_name, email, username, password, gender, age, height, leadership, ethnicity, personality, education, hobby, faculty, work):
+    def __init__(self, type, first_name, last_name, email, username, password, gender, age, height, leadership, ethnicity, personality, education, hobby, work):
         super().__init__(type, first_name, last_name, email, username, password)
         self.ethnicity = ethnicity
         self.age = age
@@ -92,7 +91,6 @@ class Regular (User):
         self.gender = gender
         self.hobby = hobby
         self.education = education
-        self.faculty = faculty
         self.work = work
 
     __mapper_args__ = {
