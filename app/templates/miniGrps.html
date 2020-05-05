@@ -2,7 +2,7 @@
 <div>
   
   <div class="page_header">
-    <h2 class="dash_header">{{gp_name.group_name}}</h2> <span> <img src="/static/images/transfer.png" class="transfer grow" data-toggle="modal" data-target="#myModal0"></span>
+    <h2 class="dash_header">{{allSets.set_name}}</h2> <span> <img src="/static/images/transfer.png" class="transfer grow" data-toggle="modal" data-target="#myModal0"></span>
     <h4 class="dash_header2">{{groups|length}} Groups of {{numPersons}}: <button class=" btn recom">Disband Groups</button></h2>
   </div>
 
@@ -22,7 +22,7 @@
   <!-- TESTING SUMN -->
   {% if current_user.type == "Organizer"%} 
            
-        
+    {{mbrIDs}}
    
     {{mbrNames}} {% endif %}
     
@@ -36,7 +36,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ url_for('miniGrps',gp_id = gp_id,numPersons = numPersons) }}" method="post">
+      <form action="{{ url_for('Groups',set_id = set_id,numPersons = numPersons, mbrIDs = mbrIDs) }}" method="post">
         {{ form2.csrf_token }}
       <div class="modal-body">
         <div class="modal-form">
@@ -68,7 +68,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ url_for('miniGrps',gp_id = gp_id,numPersons = numPersons) }}" method="post">
+      <form action="{{ url_for('Groups',set_id = set_id,numPersons = numPersons, mbrIDs = mbrIDs) }}" method="post">
         {{ form2.csrf_token }}
       <div class="modal-body centered">
          

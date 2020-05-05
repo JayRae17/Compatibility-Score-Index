@@ -55,7 +55,7 @@ class Organizer (User):
     user_id = db.Column(db.Integer, db.ForeignKey(
         'user.user_id'), primary_key=True)
     occupation = db.Column(db.String(30))
-    groups = db.relationship('Grouped', backref='admin')
+    sets = db.relationship('Sets', backref='admin')
 
     def __init__(self, type, first_name, last_name, email, username, password, occupation):
         super().__init__(type, first_name, last_name, email, username, password)
@@ -98,17 +98,17 @@ class Regular (User):
     }
 
 
-class Grouped (db.Model):
-    __tablename__ = 'grouped'
+class Sets (db.Model):
+    __tablename__ = 'sets'
 
-    group_id = db.Column(db.Integer, primary_key=True)
-    group_name = db.Column(db.String(20), unique=True)
+    set_id = db.Column(db.Integer, primary_key=True)
+    set_name = db.Column(db.String(20), unique=True)
     purpose = db.Column(db.String(30))
     code = db.Column(db.String(10))
     administrator = db.Column(db.Integer, db.ForeignKey(
         'organizer.user_id'))
 
-    def __init__(self, group_name, purpose, administrator):
+    def __init__(self, set_name, purpose, administrator):
         def random_Coder(lgth):
             """Generate a random string of letters, digits and special characters """
             return ''.join(random.choice(string.ascii_letters + string.digits + string.punctuation) for i in range(lgth))
@@ -117,7 +117,7 @@ class Grouped (db.Model):
             """Generate a random string of letters, digits and special characters Option 2"""
             return uuid.uuid4().hex.upper()[0:lgth]
 
-        self.group_name = group_name
+        self.set_name = set_name
         self.purpose = purpose
         self.administrator = administrator
         # self.code = random_Coder(10)
@@ -125,9 +125,9 @@ class Grouped (db.Model):
 
     def get_id(self):
         try:
-            return unicode(self.group_id)  # python 2 support
+            return unicode(self.set_id)  # python 2 support
         except NameError:
-            return str(self.group_id)  # python 3 support
+            return str(self.set_id)  # python 3 support
 
     def get_Code(self):
         try:
@@ -136,19 +136,19 @@ class Grouped (db.Model):
             return str(self.code)  # python 3 support
 
 
-class joinGroup(db.Model):
-    __tablename__ = 'joingroup'
+class joinSet(db.Model):
+    __tablename__ = 'joinset'
 
     user_id = db.Column(db.Integer, db.ForeignKey(
         'regular.user_id'), primary_key=True)
-    group_id = db.Column(db.Integer, db.ForeignKey(
-        'grouped.group_id'), primary_key=True)
+    set_id = db.Column(db.Integer, db.ForeignKey(
+        'sets.set_id'), primary_key=True)
 
     def get_id(self):
         try:
-            return unicode(self.group_id)  # python 2 support
+            return unicode(self.set_id)  # python 2 support
         except NameError:
-            return str(self.group_id)  # python 3 support
+            return str(self.set_id)  # python 3 support
 
 
 class Scores(db.Model):
@@ -161,104 +161,25 @@ class Scores(db.Model):
 
 
 
-class formedGrps2(db.Model):
-    __tablename__ = 'formedgrps2'
+class formedGrps(db.Model):
+    __tablename__ = 'formedgrps'
 
-    minigrp_id = db.Column(db.Integer, primary_key=True)
+    grp_id = db.Column(db.Integer, primary_key=True, autoincrement = False)
 
-    group_id = db.Column(db.Integer, db.ForeignKey('grouped.group_id'))
+    set_id = db.Column(db.Integer, db.ForeignKey('sets.set_id'))
 
-    mbr1 = db.Column(db.String(30))
-
-    mbr2 = db.Column(db.String(30))
+    user_id = db.Column(db.Integer, db.ForeignKey('regular.user_id'))
 
     criteria = db.Column(db.String(30))
 
-    def __init__(self, group_id, mbr1, mbr2, criteria):
-        self.group_id = group_id
-        self.mbr1 = mbr1
-        self.mbr2 = mbr2
+    def __init__(self, grp_id, set_id, user_id, criteria):
+        self.grp_id = grp_id
+        self.set_id = set_id
+        self.user_id = user_id
         self.criteria = criteria
 
 
 
-class formedGrps3(db.Model):
-    __tablename__ = 'formedgrps3'
-
-    minigrp_id = db.Column(db.Integer, primary_key=True)
-
-    group_id = db.Column(db.Integer, db.ForeignKey('grouped.group_id'))
-
-    mbr1 = db.Column(db.String(30))
-
-    mbr2 = db.Column(db.String(30))
-
-    mbr3 = db.Column(db.String(30))
-
-    criteria = db.Column(db.String(30))
-
-    def __init__(self, group_id, mbr1, mbr2, mbr3,criteria):
-        self.group_id = group_id
-        self.mbr1 = mbr1
-        self.mbr2 = mbr2
-        self.mbr3 = mbr3
-        self.criteria = criteria
-
-
-
-class formedGrps4(db.Model):
-    __tablename__ = 'formedgrps4'
-
-    minigrp_id = db.Column(db.Integer, primary_key=True)
-
-    group_id = db.Column(db.Integer, db.ForeignKey('grouped.group_id'))
-
-    mbr1 = db.Column(db.String(30))
-
-    mbr2 = db.Column(db.String(30))
-
-    mbr3 = db.Column(db.String(30))
-
-    mbr4 = db.Column(db.String(30))
-
-    criteria = db.Column(db.String(30))
-
-    def __init__(self, group_id, mbr1, mbr2, mbr3, mbr4, criteria):
-        self.group_id = group_id
-        self.mbr1 = mbr1
-        self.mbr2 = mbr2
-        self.mbr3 = mbr3
-        self.mbr4 = mbr4
-        self.criteria = criteria
-
-
-class formedGrps5(db.Model):
-    __tablename__ = 'formedgrps5'
-
-    minigrp_id = db.Column(db.Integer, primary_key=True)
-
-    group_id = db.Column(db.Integer, db.ForeignKey('grouped.group_id'))
-
-    mbr1 = db.Column(db.String(30))
-
-    mbr2 = db.Column(db.String(30))
-
-    mbr3 = db.Column(db.String(30))
-
-    mbr4 = db.Column(db.String(30))
-
-    mbr5 = db.Column(db.String(30))
-
-    criteria = db.Column(db.String(30))
-
-    def __init__(self, group_id, mbr1, mbr2, mbr3, mbr4, mbr5, criteria):
-        self.group_id = group_id
-        self.mbr1 = mbr1
-        self.mbr2 = mbr2
-        self.mbr3 = mbr3
-        self.mbr4 = mbr4
-        self.mbr5 = mbr5
-        self.criteria = criteria
 
 
 

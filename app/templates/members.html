@@ -1,7 +1,7 @@
 {% extends "sidebar.html" %} {% block div %}
 <div>
   <div class="page_header">
-    <h2 class="dash_header">{{gp_name.group_name}}</h2>
+    <h2 class="dash_header">{{set_name.set_name}}</h2>
     <!-- {% include 'flash_messages.html' %} -->
   </div>
 
@@ -52,7 +52,7 @@
 
       <div class="modal-body">
         <form
-        action="{{ url_for('members', gp_id = gp_id) }}"
+        action="{{ url_for('members', set_id = set_id) }}"
         method="post"
         >
 

@@ -109,3 +109,4 @@ class TranferGrp(FlaskForm):
 
 class Criteria(FlaskForm):
     crit = SelectField('Criteria', choices=[ ('compatible', 'Compatible'), ('incompatible', 'Incompatible')])
+    submit = SubmitField('ok')

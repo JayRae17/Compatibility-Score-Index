@@ -64,13 +64,13 @@
           {% if current_user.type == "Organizer" %}
           <a
             class="drop"
-            href="{{ url_for('createGroup', username=current_user.username) }}"
+            href="{{ url_for('createSet', username=current_user.username) }}"
             >New Group</a
           >
           {% endif %} {% if current_user.type == "Regular" %}
           <a
             class="drop"
-            href="{{ url_for('joinAGroup', username=current_user.username) }}"
+            href="{{ url_for('joinASet', username=current_user.username) }}"
             >Join A Group</a
           >
           {% endif %}

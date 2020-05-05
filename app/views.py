@@ -11,7 +11,7 @@ from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from app.forms import LoginForm, SignUp, AboutYou, Groupings, newGroup, joinNewGroup, TranferGrp, Criteria
 from werkzeug.security import check_password_hash
-from app.models import User, Regular, Organizer, Grouped, joinGroup, Scores, formedGrps2,formedGrps3,formedGrps4,formedGrps5
+from app.models import User, Regular, Organizer, Sets, joinSet, Scores, formedGrps
 ###
 # Routing for your application.
 ###
@@ -126,23 +126,23 @@ def register(typeUser):
 
 
 @login_required
-@app.route('/<username>/createGroup',  methods=['GET', 'POST'])
-def createGroup(username):
+@app.route('/<username>/createSet',  methods=['GET', 'POST'])
+def createSet(username):
     """Render the website's  page."""
     form = newGroup()
     if request.method == "POST" and form.validate_on_submit():
-        gp_name = form.group_name.data
+        set_name = form.group_name.data
 
-        if gp_name is not None:
-            gp = Grouped(
-                group_name=gp_name, purpose=request.form['purpose'], administrator=current_user.user_id)
+        if set_name is not None:
+            sets = Sets(
+                set_name=set_name, purpose=request.form['purpose'], administrator=current_user.user_id)
 
             # Adds a regular user info to the database
-            db.session.add(gp)
+            db.session.add(sets)
             db.session.commit()
 
             # Success Message Appears
-            flash('Group Added', 'success')
+            flash('Set Added', 'success')
 
             # Redirects to Profile Page
             return redirect(url_for('dashboard', username=current_user.username))
@@ -153,28 +153,26 @@ def createGroup(username):
 
 
 @login_required
-@app.route('/<username>/joinGroup',  methods=['GET', 'POST'])
-def joinAGroup(username):
+@app.route('/<username>/joinSet',  methods=['GET', 'POST'])
+def joinASet(username):
     """Render the website's  page."""
     form = joinNewGroup()
     if request.method == "POST" and form.validate_on_submit():
         # Collects username and email info from form
         # group_name = form.group_name.data
-        gcode = form.group_code.data
+        scode = form.group_code.data
 
         # Checks if another user has this username
-        existing_group = db.session.query(
-            Grouped).filter_by(code=gcode).first()
+        existing_set = db.session.query(Sets).filter_by(code=scode).first()
 
         # If valid credentials, flash success and redirect
-        if existing_group.code == gcode:
-            join_gp = joinGroup(user_id=current_user.user_id,
-                                group_id=existing_group.group_id)
+        if existing_set.code == scode:
+            join_st = joinSet(user_id=current_user.user_id, set_id=existing_set.set_id)
 
-            db.session.add(join_gp)
+            db.session.add(join_st)
             db.session.commit()
 
-            flash('Successfully Added to Group','success')
+            flash('Successfully Added to a Set','success')
 
             # return redirect(url_for('dashboard', username=current_user.username))
 
@@ -186,15 +184,15 @@ def joinAGroup(username):
 
 
 @login_required
-@app.route('/members/<gp_id>',  methods=['GET', 'POST'])
-def members(gp_id):
-    gp_name = Grouped.query.filter_by(group_id=gp_id).first()
+@app.route('/members/<set_id>',  methods=['GET', 'POST'])
+def members(set_id):
+    set_name = Sets.query.filter_by(set_id=set_id).first()
 
     if current_user.type == "Organizer":
         # groups = db.session.query(formedGrps2).filter_by(group_id=gp_id).all()
         # if groups :
 
-        getMembers = (db.session.query(joinGroup, Regular, User).join(joinGroup).filter_by(group_id=gp_id).all())
+        getMembers = (db.session.query(joinSet, Regular, User).join(joinSet).filter_by(set_id=set_id).all())
         """Render the website's  page."""
         
         form = Groupings()
@@ -206,75 +204,35 @@ def members(gp_id):
             # CALCULATES THE AMOUNT OF GROUPS BASED ON NUMBER ENTERED
             length = len(getMembers)
             grpAmt = length/int(numPersons)
-            grpAmt = round(grpAmt)
+            grpAmt = math.ceil(grpAmt)
 
             # SAVES ALL THE NAMES IN THE SPECIFIC SET TO 'MBRNAMES'
-            mbrNames = (db.session.query(Regular.first_name,Regular.last_name).join(joinGroup, Regular.user_id == joinGroup.user_id).filter_by(group_id=gp_id).all())
+            mbrIDs = (db.session.query(Regular.user_id).join(joinSet, Regular.user_id == joinSet.user_id).filter_by(set_id=set_id).all())
 
 
-            # MY LAST RESORT :(
-            #Creates a regular list of the members (both first and last name)
             lst = []
-            for i in mbrNames:
-                a = 0
-                fname = str(i[a])
-                lname = str(i[a+1])
-                lst.append(fname+"" + lname)
-                a+=2
+            for i in mbrIDs:
+                lst.append(mbrIDs)
 
-            #Tryna find a way to save the different sized groups to the database
+            x = 0
+            for i in range(lst):
+                x+=1
+                for a in range(grpAmt):
+                    grp = formedGrps(grp_id = x,set_id= set_id, user_id = user_id, criteria=str(grpBy)) 
 
-            if int(numPersons) == 2: #if its groups of 2, save it to database table for groups of 2
-                for i in range(grpAmt):
-                    mini = formedGrps2(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], criteria=str(grpBy))
-                    lst = lst[2:] 
-                    db.session.add(mini)
-                    db.session.commit()
-                    # if len(lst) == 1:
-                    #     mini = formedGrps2(group_id= gp_id, mbr1=lst[0], mbr2="", criteria=str(grpBy))
-                    # else:
-                    #     break
+            # NEEDS WORK!!!
+                
+                db.session.add(grp)
+                db.session.commit()
+                # if len(lst) == 1:
+                #     mini = formedGrps2(group_id= gp_id, mbr1=lst[0], mbr2="", criteria=str(grpBy))
+                # else:
+                #     break
 
 
-            if int(numPersons) == 3: #if its groups of 3, save it to database table for groups of 3
-                for i in range(grpAmt):
-                    mini = formedGrps3(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], mbr3=lst[2], criteria=str(grpBy))
-                    lst = lst[3:] 
-                    db.session.add(mini)
-                    db.session.commit()
-                    # if len(lst) == 2:
-                    #     mini = formedGrps3(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], mbr3="", criteria=str(grpBy))
-                    # if len(lst) == 1:
-                    #     mini = formedGrps3(group_id= gp_id, mbr1=lst[0], mbr2="", mbr3="", criteria=str(grpBy))
-                    # else:
-                    #     break
+            return redirect(url_for('Groups', set_id = set_id, numPersons = numPersons, mbrIDs = mbrIDs))
 
-            if int(numPersons) == 4: #if its groups of 4, save it to database table for groups of 4
-                for i in range(grpAmt):
-                    mini = formedGrps4(group_id= gp_id, mbr1=lst[0], mbr2=lst[1],mbr3=lst[2],mbr4=lst[3],criteria=str(grpBy))
-                    lst = lst[4:] 
-                    db.session.add(mini)
-                    db.session.commit()
-                    # if len(lst) == 3:
-                    #     mini = formedGrps4(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], mbr3=lst[1], mbr4="", criteria=str(grpBy))
-                    # if len(lst) == 2:
-                    #     mini = formedGrps4(group_id= gp_id, mbr1=lst[0], mbr2=lst[1], mbr3="", mbr4="", criteria=str(grpBy))
-                    # if len(lst) == 1:
-                    #     mini = formedGrps4(group_id= gp_id, mbr1=lst[0], mbr2="", mbr3="", mbr4="", criteria=str(grpBy))
-                    # else:
-                    #     break
-            
-            if int(numPersons) == 5: #if its groups of 5 save it to database table for groups of 5
-                for i in range(grpAmt):
-                    mini = formedGrps5(group_id= gp_id, mbr1=lst[0], mbr2=lst[1],mbr3=lst[2],mbr4=lst[3], mbr5=lst[4],criteria=str(grpBy))
-                    lst = lst[5:] 
-                    db.session.add(mini)
-                    db.session.commit()
-
-
-            return redirect(url_for('miniGrps', gp_id = gp_id, numPersons = numPersons))
-
-    return render_template('members.html', getMembers=getMembers, gp_name=gp_name, gp_id = gp_id, form = form)
+    return render_template('members.html', getMembers=getMembers, set_name= set_name, set_id = set_id, form = form)
         
    
 
@@ -282,31 +240,21 @@ def members(gp_id):
 
 
 @login_required
-@app.route('/minigroups/<gp_id>/<numPersons>/',  methods=['GET', 'POST'])
+@app.route('/Groups/<set_id>/<numPersons>/<mbrIDs>',  methods=['GET', 'POST'])
 
-def miniGrps(gp_id,numPersons):
-    gp_name = Grouped.query.filter_by(group_id=gp_id).first()
+def Groups(set_id,numPersons,mbrIDs):
+    allSets = Sets.query.filter_by(set_id=set_id).first()
     
     if int(numPersons) == 2:
-        groups = db.session.query(formedGrps2).filter_by(group_id=gp_id).all()
+        groups = db.session.query(formedGrps).filter_by(set_id=set_id).all()
     
-    if int(numPersons) == 3:
-        groups = db.session.query(formedGrps3).filter_by(group_id=gp_id).all()
     
-    if int(numPersons) == 4:
-        groups = db.session.query(formedGrps4).filter_by(group_id=gp_id).all()
-    
-    if int(numPersons) == 5:
-        groups = db.session.query(formedGrps5).filter_by(group_id=gp_id).all()
-    
-
     form2 = TranferGrp()
     if request.method == "POST" and form2.validate_on_submit():
         grpNum = form2.grpNum.data 
         grpNum2 = form2.grpNum2.data
-        return redirect
-    return render_template('miniGrps.html', gp_id = gp_id, gp_name=gp_name, numPersons=numPersons, groups= groups, form2 = form2)
-
+        # return redirect
+    return render_template('miniGrps.html', set_id = set_id, allSets=allSets, numPersons=numPersons, groups= groups, mbrIDs=mbrIDs,form2 = form2)
 
 
 
@@ -315,9 +263,14 @@ def miniGrps(gp_id,numPersons):
 def recommend(username):
     """Render the website's recommended matches page."""
     form = Criteria()
-    getGroups = Grouped.query.join(joinGroup).filter_by(user_id=current_user.user_id).all()
+    # if request.method == "POST" and form.validate_on_submit():
+    crit = form.crit.data
+    # if crit == "compatible":
+    matches = (db.session.query(User).join(Regular, User.user_id == Regular.user_id).filter(Regular.user_id != current_user.user_id).limit(9).all())
+    # else:
+    #     matches = (db.session.query(User).join(Regular, User.user_id == Regular.user_id).filter(Regular.user_id != current_user.user_id).order_by(Regular.user_id.desc()).limit(9).all())
 
-    return render_template('recomnd.html', form = form)
+    return render_template('recomnd.html', form = form, matches = matches)
 
 
 
@@ -327,12 +280,12 @@ def recommend(username):
 def dashboard(username):
     """Render the website's dashboard page."""
     if current_user.type == "Organizer":
-        getGroups = Grouped.query.filter_by(
+        getSets = Sets.query.filter_by(
             administrator=current_user.user_id).all()
     else:
-        getGroups = Grouped.query.join(joinGroup).filter_by(user_id=current_user.user_id).all()
+        getSets = Sets.query.join(joinSet).filter_by(user_id=current_user.user_id).all()
 
-    return render_template('dashbrd.html', gps=getGroups)
+    return render_template('dashbrd.html', sets=getSets)
 
 
 
