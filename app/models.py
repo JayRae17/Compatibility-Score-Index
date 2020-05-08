@@ -154,10 +154,9 @@ class joinSet(db.Model):
 class Scores(db.Model):
     __tablename__ = 'userscore'
 
-    user_id = db.Column(db.Integer, db.ForeignKey(
-        'regular.user_id'), primary_key=True)
-    feature = db.Column(db.String(20), primary_key=True)
-    weight = db.Column(db.DECIMAL(2, 1))
+    user_id = db.Column(db.Integer, db.ForeignKey('regular.user_id'), primary_key=True)
+    other_id = db.Column(db.Integer, primary_key=True)
+    score = db.Column(db.DECIMAL(4, 3))
 
 
 

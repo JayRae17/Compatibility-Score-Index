@@ -12,6 +12,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from app.forms import LoginForm, SignUp, AboutYou, Groupings, newGroup, joinNewGroup, TranferGrp, Criteria
 from werkzeug.security import check_password_hash
 from app.models import User, Regular, Organizer, Sets, joinSet, Scores, formedGrps
+from sqlalchemy.sql import alias, select
 ###
 # Routing for your application.
 ###
@@ -258,19 +259,24 @@ def Groups(set_id,numPersons,mbrIDs):
 
 
 
-@app.route('/recommend/<username>')
+@app.route('/recommend/<username>', methods=['GET', 'POST'])
 @login_required
 def recommend(username):
     """Render the website's recommended matches page."""
     form = Criteria()
-    # if request.method == "POST" and form.validate_on_submit():
-    crit = form.crit.data
-    # if crit == "compatible":
-    matches = (db.session.query(User).join(Regular, User.user_id == Regular.user_id).filter(Regular.user_id != current_user.user_id).limit(9).all())
-    # else:
-    #     matches = (db.session.query(User).join(Regular, User.user_id == Regular.user_id).filter(Regular.user_id != current_user.user_id).order_by(Regular.user_id.desc()).limit(9).all())
+    if request.method == "POST":
+        crit = form.crit.data
+        
+        if crit == "compatible":
+            matches = (db.session.query(Scores, User).join(Scores, Scores.other_id == User.user_id).order_by(Scores.score.desc()).limit(9).all())
+        else:
+            matches = (db.session.query(Scores, User).join(Scores, Scores.other_id == User.user_id).order_by(Scores.score.asc()).limit(9).all())
+        
+        return render_template('recomnd.html', form = form, matches = matches)
+    
+    matches = (db.session.query(Scores, User).join(Scores, Scores.other_id == User.user_id).order_by(Scores.score.desc()).limit(9).all())
 
-    return render_template('recomnd.html', form = form, matches = matches)
+    return render_template('recomnd.html', form = form, matches=matches)
 
 
 

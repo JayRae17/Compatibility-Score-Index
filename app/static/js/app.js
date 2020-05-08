@@ -19,6 +19,17 @@ $("div[id^='myModal']").each(function(){
   });
 
 
+  // REMOVES RECOMMENDED MATCHES
 
+  $(document).ready(function(){
+    $(".delete_").click(function(){
+      $(this).parent().parent().remove();
+    });
+  });
+
+
+
+
+ 
 
   

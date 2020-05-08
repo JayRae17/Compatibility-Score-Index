@@ -652,7 +652,7 @@ div.register-form form.card-user-reg div.form-group {
 }
 
 .grp_title{
-  padding-left: 7px;
+  padding-left: 1rem;
   padding-right: 7px;
   position: absolute;
   right: 0px;
@@ -948,8 +948,8 @@ img.transfer {
 }
 
 .postn{
-  margin-left: 80%;
-  width: 14rem;
+  margin-left: 67%;
+  /* width: 11rem; */
 }
 
 .rmndTile{
@@ -999,4 +999,20 @@ img.reload {
   height:2.5rem;
   margin:0rem;
   cursor: pointer;
+}
+
+.mydropdown{
+  color: #0E267A;
+  background-color: white;
+  border: 2px solid #97b0e7;
+}
+
+.ok-sml{
+  color: #97b0e7;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.ok-sml:hover{
+  color: #0E267A;
 }
