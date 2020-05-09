@@ -11,24 +11,12 @@
     method="POST"
   >
     {{ form.csrf_token }}
-    <div class="row my-2">
-      
-    </div>
-    <div class="form-body-about">
+
+
+    <div class="ques-container mt-4">
+
       <div class="row mt-5">
-        <div class="col">
-          <div class="form-group">
-            {{ form.sex.label }} {{ form.sex(class='form-control sel') }} {% if
-            form.sex.errors %}
-            <ul class="errors">
-              {% for error in form.sex.errors %}
-              <li>Please select an option from the dropdown.</li>
-              {% endfor %}
-            </ul>
-            {% endif %}
-          </div>
-        </div>
-        <div class="col">
+        <div class="col-6">
           <div class="form-group">
             {{ form.age.label }} {{ form.age(class='form-control sel') }} {% if
             form.age.errors %}
@@ -40,9 +28,10 @@
             {% endif %}
           </div>
         </div>
-        <div class="col">
+
+        <div class="col-6">
           <div class="form-group">
-            {{ form.height.label }} {{ form.height(class='form-control sel') }}
+            {{ form.height.label }} {{ form.height(class='form-control ques') }}
             {% if form.height.errors %}
             <ul class="errors">
               {% for error in form.height.errors %}
@@ -53,12 +42,36 @@
           </div>
         </div>
       </div>
-      
-    </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group mt-3">
+            {{ form.sex.label }} {{ form.sex(class='form-control ques') }} {% if
+            form.sex.errors %}
+            <ul class="errors">
+              {% for error in form.sex.errors %}
+              <li>Please select an option from the dropdown.</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="form-group mt-3">
+            {{ form.pref_sex.label }} {{ form.pref_sex(class='form-control ques') }} {% if
+            form.pref_sex.errors %}
+            <ul class="errors">
+              {% for error in form.pref_sex.errors %}
+              <li>Please select an option from the dropdown.</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
 
 
-
-    <div class="ques-container mt-4">
       <div class="row">
         <div class="col-6">
           <div class="form-group mt-3">
@@ -75,6 +88,23 @@
 
         <div class="col-6">
           <div class="form-group mt-3">
+            {{ form.pref_ethnicity.label }} {{ form.pref_ethnicity(class='form-control
+            ques') }} {% if form.pref_ethnicity.errors %}
+            <ul class="errors">
+              {% for error in form.pref_ethnicity.errors %}
+              <li>Please select an option from the dropdown.</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group mt-3">
             {{ form.personality.label }} {{ form.personality(class='form-control
             ques') }} {% if form.personality.errors %}
             <ul class="errors">
@@ -85,9 +115,7 @@
             {% endif %}
           </div>
         </div>
-      </div>
 
-      <div class="row">
         <div class="col-6">
           <div class="form-group mt-3">
             {{ form.work.label }} {{ form.work(class='form-control ques') }} {%
@@ -100,7 +128,9 @@
             {% endif %}
           </div>
         </div>
+      </div>
       
+      <div class="row">
         <div class="col-6">
           <div class="form-group mt-3">
             {{ form.leadership.label }} {{ form.leadership(class='form-control
@@ -113,10 +143,7 @@
             {% endif %}
           </div>
         </div>
-      </div>
 
-
-      <div class="row">
         <div class="col-6">
           <div class="form-group mt-3">
             {{ form.education.label }} {{ form.education(class='form-control
@@ -129,6 +156,7 @@
             {% endif %}
           </div>
         </div>
+      </div>
       
      
         <div class="col-6">

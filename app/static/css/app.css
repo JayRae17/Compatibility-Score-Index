@@ -430,8 +430,9 @@ div.register-form form.card-user-reg div.form-group {
 }
 
 .form-control.sel {
-  width: 181px;
-  background: linear-gradient(90deg, rgb(161, 238, 255) -313.56%, rgb(255, 201, 225) 398.31%);
+  width: 299px;
+  /* background: linear-gradient(90deg, rgb(161, 238, 255) -313.56%, rgb(255, 201, 225) 398.31%); */
+  background-color: #e9eff6;
 }
 
 .form-control.sel#height {
@@ -454,7 +455,8 @@ div.register-form form.card-user-reg div.form-group {
 .ques-container select.ques {
   width: 299px;
   margin-bottom: 1rem;
-  background: linear-gradient(90deg, rgb(161, 238, 255) -313.56%, rgb(255, 201, 225) 398.31%);
+  /* background: linear-gradient(90deg, rgb(161, 238, 255) -313.56%, rgb(255, 201, 225) 398.31%); */
+  background-color: #e9eff6;
 }
 
 .ques-container {

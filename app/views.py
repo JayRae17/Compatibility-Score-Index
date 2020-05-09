@@ -268,13 +268,19 @@ def recommend(username):
         crit = form.crit.data
         
         if crit == "compatible":
-            matches = (db.session.query(Scores, User).join(Scores, Scores.other_id == User.user_id).order_by(Scores.score.desc()).limit(9).all())
+            matches = (db.session.query(Scores, User).join(Scores, Scores.other_id == User.user_id).filter_by(user_id = current_user.user_id).order_by(Scores.score.desc()).limit(9).all())
         else:
-            matches = (db.session.query(Scores, User).join(Scores, Scores.other_id == User.user_id).order_by(Scores.score.asc()).limit(9).all())
+            matches = (db.session.query(Scores, User).join(Scores, Scores.other_id == User.user_id).filter_by(user_id = current_user.user_id).order_by(Scores.score.asc()).limit(9).all())
         
         return render_template('recomnd.html', form = form, matches = matches)
     
-    matches = (db.session.query(Scores, User).join(Scores, Scores.other_id == User.user_id).order_by(Scores.score.desc()).limit(9).all())
+    matches = (db.session.query(Scores, User).join(Scores, Scores.other_id == User.user_id).filter_by(user_id = current_user.user_id).order_by(Scores.score.desc()).limit(9).all())
+    # each = Scores(user_id=current_user.user_id, other_id=13, score = 0.10)
+
+    # db.session.add(each)
+    # db.session.commit()
+
+
 
     return render_template('recomnd.html', form = form, matches=matches)
 
@@ -301,10 +307,16 @@ def aboutUser(typeUser):
     form = AboutYou()
     if request.method == "POST" and form.validate_on_submit():
         gender=request.form['sex']
+        # JUST ADDED (CONTINUE WORKING ON IT!)
+        pref_gender=request.form['pref_sex']
+
         age=request.form['age']
         height=request.form['height'] 
         leadership=request.form['leadership'] 
         ethnicity=request.form['ethnicity']
+        # JUST ADDED (CONTINUE WORKING ON IT!)
+        pref_ethnicity=request.form['pref_ethnicity']
+
         personality=request.form['personality'] 
         education=request.form['education']
         hobby=request.form['hobby'] 
